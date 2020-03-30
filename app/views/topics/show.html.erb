@@ -1,0 +1,46 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.topics {
+    display: none;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+<main>
+<center>
+<h2 style="color: blue" class="item-showall-text">Topics</h2><br/>
+<nav style="line-height: 2">
+
+   <% @topics.each do |topic| %>
+
+      <b>
+      <%= link_to topic.title, items_index3_path(:topic_id => topic.id), class: "p-2 text-muted a-border" %>
+      <b/>
+    <% end %>
+</nav>
+
+ <% if user_signed_in? %>
+ <% if current_user.admin? %>
+
+
+
+
+   <br/><br/><h2 style="color: blue" class="item-showall-text">Add a topic</h2><br/>
+
+   <%= form_with(model: [ @topics.build ], local: true) do |form| %>
+   <p>
+      <%= form.text_field :title, class: 'tags' %>
+   </p>
+   <p>
+         <%= submit_tag "Create", class:"btn btn-primary", style: "background: blue", role:"button"  %>
+
+   </p>
+   <% end %>
+
+<% end %>
+
+                                  <% end %>
+</main>
+</center>

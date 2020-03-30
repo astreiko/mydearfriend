@@ -1,0 +1,66 @@
+<% if user_signed_in? %>
+    <% if (current_user.id == @user.id) %>
+<style>
+.my_collection {
+    display: none;
+}
+</style>
+<% end %>
+<% end %>
+
+<h2 style="color: blue; text-align: center" class="item-showall-text"><%= @user.name %> collection</h2>
+
+    <div class="row mb-2">
+        <% @user.groups.each do |group| %>
+            <div class="col-md-6">
+                <% if user_signed_in? %>
+                    <% if (current_user.id == @user.id) || (current_user.admin) %>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <%= link_to image_tag("/assets/edit.png", height: "20px", class: "scale"), edit_user_group_path(group.user, group)%>
+                        <%= link_to image_tag("/assets/delete.png", height: "20px", class: "scale"), [group.user, group], method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                <% end %>
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">
+                            <%= User.find(group.user_id).name %>
+                        </strong>
+                        <h3 class="mb-0">
+                            <%= link_to group.title, showAll_item_path(:group_id => group.id) %>
+                        </h3>
+                        <div class="mb-1 text-muted">
+                            <%= group.created_at %>
+                            <%= @topics.find_by(id: group.topic_id).title %>
+                        </div>
+                        <span style="text-align: justify;">
+                            <%= link_to markdown(group.description), showAll_item_path(:group_id => group.id) %>
+                        </span>
+                        <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <div class="bd-placeholder-img" style:"top: 0;">
+                            <%= image_tag group.image, style:"width: 200px; height: 250px; object-fit: cover;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+            <% if user_signed_in? %>
+                <% if (current_user.id == @user.id) || (current_user.admin) %>
+                <div class="col-md-6">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to image_tag("/assets/edit.png", height: "20px"), new_user_group_path(:user_id => @user.id), style: "visibility: hidden;" %>
+                    <%= link_to image_tag("/assets/delete.png", height: "20px"), new_user_group_path(:user_id => @user.id), style: "visibility: hidden;" %>
+                    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <center>
+                                <%= link_to image_tag("/assets/big_plus.png", height: "100px"), new_user_group_path(:user_id => @user.id), class: "stretched-link" %>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+</main>
+<br/>

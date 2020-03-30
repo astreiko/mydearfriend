@@ -1,0 +1,39 @@
+<style>.navbar {display: none;}</style>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
+<%= javascript_tag do %>
+    window.allTags = <%= raw @allTags.to_json %>;
+<% end %>
+<script type="text/javascript">
+$(document).on('click', '.tags', function () {
+  $('.tags').autocomplete({source: allTags});
+});
+</script>
+
+   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+   <br/>
+   <h1 style="color: blue; text-align: center" class="item-showall-text">Add a item</h1>
+
+   <%= form_with(model: [ @group, @group.items.build ], local: true) do |form| %>
+      <p>
+         <strong>Title</strong>
+         <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
+      </p>
+
+      <strong>Text</strong>
+      <%= form.rich_text_area :text, :required => 'required' %>
+   </p>
+   <strong>Tags:</strong>
+<p>
+       <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+       <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+       <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+</p>
+   <p>
+     <br/>
+       <center>
+      <%= form.submit 'Create', class:"btn btn-primary", style: "background: blue", role:"button" %>
+      </center>
+   </p>
+   <% end %>

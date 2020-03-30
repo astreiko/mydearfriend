@@ -1,0 +1,83 @@
+<style>.navbar {display: none;}</style>
+<%= javascript_tag do %>
+    window.userID = <%= raw @userID.to_json %>;
+<% end %>
+<style>
+.image{opacity: 0;}
+</style>
+
+
+
+<br/>
+
+
+
+
+<h1 style="color: blue; text-align: center" class="item-showall-text">Add a collection</h1>
+<br/>
+<%= form_with(model: [ @user, @user.groups.build ], local: true) do |form| %>
+   <div class="form-group">
+        <div id="image-photo" class="field dropzone">
+            <%= form.file_field :image, class: "image" %>
+        </div>
+        <div class="field">
+            <strong>Title</strong>
+            <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
+        </div>
+        <div class="field">
+            <strong>Description</strong>
+            <%= form.text_area :description, :required => 'required', style: "height: 100px;width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
+        </div>
+        <div class="field">
+            <strong>Topic</strong>
+            <select name='title' required>
+                    <option value="" hidden disabled selected></option>
+                    <% @topics.each do |topic| %>
+                        <option>
+                            <%= topic.title %>
+                        </option>
+                    <% end %>
+            <select/>
+        </div>
+        <div class="actions">
+  <br/>
+    <center>
+             <%= form.submit 'Create', class: 'submit', class:"btn btn-primary", style: "background: blue", role:"button"  %>
+    </center>
+        </div>
+   </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+Dropzone.autoDiscover = false;
+jQuery(document).ready(function($){
+    $("#image-photo").dropzone({
+      paramName: "group[image]", // The name that will be used to transfer the file
+        url: '/users/' + userID + '/groups/upload',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+      maxFiles: 1,
+      maxfilesexceeded: function(file) {
+          this.removeAllFiles();
+          this.addFile(file);
+      },
+      init: function() {
+          var submitButton = document.querySelector(".submit")
+          myDropzone = this; // closure
+        }
+    });
+});
+</script>

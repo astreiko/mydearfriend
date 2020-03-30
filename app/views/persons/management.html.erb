@@ -1,0 +1,72 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<style>.user_management {display: none;}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <%= form_tag destroy_users_path, :method => :delete do %>
+            <center>
+                <h4>User management</h4>
+            </center>
+            <center>
+                <main class="table-hover">
+                    <table>
+                        <thead>
+                            <tr height="15" style="box-shadow: inset 0 0 200px 5px blue;border-radius: 10px;color: white; text-align: center;">
+                                <th height="30"><input onclick="if($(this).attr('checked')) $(this).closest('table').find(':checkbox').attr('checked', true); else $(this).closest('table').find(':checkbox').attr('checked', false);" id="select_all" type="checkbox"></th>
+                                <th>Name</th>
+                                <th class="item-showall-table-email">Email</th>
+                                <th class="item-showall-table">Created at</th>
+                                <th class="item-showall-table">Current sign in at</th>
+                                <th>Banned</th>
+                                <th>Admin</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td></td></tr>
+                            <% @users.each do |user| %><% if user.id!=1 %>
+                                <tr>
+                                    <td><%= check_box_tag 'user_id[]', user.id %></td>
+                                    <td>
+                                        <% if user.groups.size > 0 %>
+                                            <%= link_to user.name, user_root_path(:id => user.id), style: "color: blue;" %>
+                                        <% else %>
+                                            <%= user.name %>
+                                        <% end %>
+                                    </td>
+                                    <td class="item-showall-table-email"><%= user.email %></td>
+                                    <td class="item-showall-table"><%= user.created_at %></td>
+                                    <td class="item-showall-table"><%= user.current_sign_in_at %></td>
+                                    <td>
+                                        <%= link_to active_user_path(id: user.id), method: :post do %>
+                                            <% if user.active %>
+                                                <%= image_tag("/assets/delete.png", height: "20px") %>
+                                            <% else %>
+                                                <%= image_tag("/assets/true.png", height: "20px") %>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                    <td>
+                                        <%= link_to admin_user_path(id: user.id), method: :post do %>
+                                            <% if user.admin %>
+                                                <%= image_tag("/assets/true.png", height: "20px") %>
+                                            <% else %>
+                                                <%= image_tag("/assets/delete.png", height: "20px") %>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                </tr>
+                            <% end %><% end %>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <%= submit_tag "Delete users", data: { confirm: 'Are you sure?' }, class:"btn btn-primary bt-text-size", style: "background: blue", role:"button"  %>
+                </main>
+            </center>
+            <% end %>
+        </div>
+    </div>
+</div>

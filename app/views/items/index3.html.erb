@@ -1,0 +1,31 @@
+<div class="container-fluid">
+<h2 style="color: blue; text-align: center" class="item-showall-text">Topic: <%= @topic.title %></h2>
+<br/>
+    <div class="row mb-2">
+        <% @groups.each do |group| %>
+            <div class="col-md-6">
+
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">
+                            <%= User.find(group.user_id).name %>
+                        </strong>
+                        <h3 class="mb-0">
+                            <%= link_to group.title, showAll_item_path(:group_id => group.id) %>
+                        </h3>
+                        <div class="mb-1 text-muted">
+                            <%= group.created_at %>
+                        </div>
+                        <span style="text-align: justify;">
+                            <%= link_to markdown(group.description), showAll_item_path(:group_id => group.id) %>
+                        </span>
+                        <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <div class="bd-placeholder-img" style:"top: 0;">
+                            <%= image_tag group.image, style:"width: 200px; height: 250px; object-fit: cover;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>

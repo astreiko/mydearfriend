@@ -1,0 +1,42 @@
+<style>.navbar {display: none;}</style>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
+<%= javascript_tag do %>
+    window.allTags = <%= raw @allTags.to_json %>;
+<% end %>
+<script type="text/javascript">
+$(document).on('click', '.tags', function () {
+  $('.tags').autocomplete({source: allTags});
+});
+</script>
+<br/>
+<h1 style="color: blue; text-align: center" class="item-showall-text">Item editing</h1>
+
+<%= form_for :item, url: group_item_path(:group_id => @item.group_id), method: :patch do |form| %>
+
+   <p>
+      <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
+   </p>
+   <p>
+
+      <%= form.rich_text_area :text, :required => 'required' %>
+   </p>
+
+   <strong>Tags:</strong>
+   <p>
+       <%= text_field_tag "tags[]", @myTags[0], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+       <%= text_field_tag "tags[]", @myTags[1], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+       <%= text_field_tag "tags[]", @myTags[2], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+       <% @allTags %>
+  </p>
+  <p>
+  <br/>
+    <center>
+        <%= form.submit 'Save', class:"btn btn-primary", style: "background: blue", role:"button" %>
+    </center>
+  </p>
+
+<% end %>
+
+<br/>
