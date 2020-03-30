@@ -24,7 +24,15 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'activerecord-session_store'
 # Use mysql2 as the database for Active Record
-gem 'mysql2'
+group :development, :test do
+  gem 'mysql2'
+  gem 'rails_12factor'
+end
+
+group :production do
+  gem 'pg'
+end
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
