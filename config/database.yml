@@ -24,4 +24,28 @@ test:
 
 production:
   <<: *default
-  database: mydearfriend_db
+  database: <%= ENV['DATABASE_URL'] %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
