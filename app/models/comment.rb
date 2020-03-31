@@ -5,7 +5,6 @@ class Comment < ApplicationRecord
 
 
   serialize :body
-  attr_accessible :body
 
 
 end
