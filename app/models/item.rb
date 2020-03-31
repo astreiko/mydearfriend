@@ -19,8 +19,7 @@ class Item < ApplicationRecord
 
 
     
-Item.__elasticsearch__.create_index!
-Item.import
+
 
 
 
