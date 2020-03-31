@@ -20,36 +20,33 @@
                     <li data-target="#demo" data-slide-to="2"></li>
                 </ul>
                 <div class="carousel-inner">
+
+<% @item.each_with_index do |item, index| %>
+    <% if index == 0 %>
                     <div class="carousel-item active">
                         <div class="index-img">
-                            <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(@item[0].group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
+                            <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                                 <div class="carousel-caption background-item">
-                                    <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= @item[0].title %></h1>
-                                    <p><%= link_to "Learn more", showOne_item_path(:id => @item[0].id, :group_id => @item[0].group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
+                                    <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
+                                    <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+    <% else %>
                     <div class="carousel-item">
                         <div class="index-img">
-                            <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(@item[1].group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
+                            <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                                 <div class="carousel-caption background-item">
-                                    <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= @item[1].title %></h1>
-                                    <p><%= link_to "Learn more", showOne_item_path(:id => @item[1].id, :group_id => @item[1].group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
+                                    <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
+                                    <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="index-img">
-                            <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(@item[2].group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
-                                <div class="carousel-caption background-item">
-                                    <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= @item[2].title %></h1>
-                                    <p><%= link_to "Learn more", showOne_item_path(:id => @item[2].id, :group_id => @item[2].group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <% end %>
+<% end %>
+
                 </div>
                 <a class="carousel-control-prev" href="#demo" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
