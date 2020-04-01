@@ -13,7 +13,7 @@ before_action :authenticate_admin!
 
   def management
         @topics = Topic.all.order(title: :asc)
-        @users = User.all
+        @users = User.all.order(name: :asc)
         @groups = Group.all
             @menu_topics = Topic.all.order(title: :asc)
             @activ_topics = []
