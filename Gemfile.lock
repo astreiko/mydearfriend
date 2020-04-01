@@ -1,13 +1,22 @@
 GIT
   remote: https://github.com/elastic/elasticsearch-rails.git
-  revision: 97862b5baa8a79030103fd2758b8d374439b8f68
-  branch: 6.x
+  revision: 82d799e910add123f2d95d8700ab607ba682a478
+  branch: master
   specs:
-    elasticsearch-model (6.1.0)
+    elasticsearch-model (7.0.0)
       activesupport (> 3)
-      elasticsearch (~> 6)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-rails (6.1.0)
+    elasticsearch-rails (7.0.0)
+
+GIT
+  remote: https://github.com/omc/bonsai-elasticsearch-rails.git
+  revision: 942dea4a263e0b86c7dc197528ea9770c88146c8
+  branch: master
+  specs:
+    bonsai-elasticsearch-rails (0.3.0)
+      elasticsearch-model (< 99)
+      elasticsearch-rails (< 99)
 
 GEM
   remote: https://rubygems.org/
@@ -108,12 +117,12 @@ GEM
     dropbox_api (0.1.18)
       faraday (<= 1.0)
       oauth2 (~> 1.1)
-    elasticsearch (6.8.0)
-      elasticsearch-api (= 6.8.0)
-      elasticsearch-transport (= 6.8.0)
-    elasticsearch-api (6.8.0)
+    elasticsearch (7.4.0)
+      elasticsearch-api (= 7.4.0)
+      elasticsearch-transport (= 7.4.0)
+    elasticsearch-api (7.4.0)
       multi_json
-    elasticsearch-transport (6.8.0)
+    elasticsearch-transport (7.4.0)
       faraday
       multi_json
     erubi (1.9.0)
@@ -282,6 +291,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store
   activestorage-dropbox
+  bonsai-elasticsearch-rails!
   bootsnap (>= 1.4.2)
   bootstrap-sass
   byebug
