@@ -3,12 +3,12 @@ before_action :authenticate_user!, except: [:showAll]
 
 
     def upload
-        if @previous_group = Group.where(topic_id: 7, description: 'description', title: 'title', user_id: params[:id]).first
+        if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:id]).first
             @previous_group.destroy
         end
         @group = Group.new(upload_params)
         @group.user_id=params[:id]
-        @group.topic_id=7
+        @group.topic_id=1
         @group.description='description'
         @group.title='title'
         @group.save
@@ -20,7 +20,7 @@ before_action :authenticate_user!, except: [:showAll]
 
   def create
     @user = User.find(params[:user_id])
-    if @group = Group.where(topic_id: 7, description: 'description', title: 'title', user_id: params[:user_id]).first
+    if @group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
         @group.update(create_params)
         @topic = Topic.find_by(title: params[:title])
         @group.update(:topic_id => @topic.id)
@@ -48,7 +48,7 @@ before_action :authenticate_user!, except: [:showAll]
           @user = User.find(params[:id])
           @groups = Group.find_by(user_id: params[:id])
           @topics = Topic.all.order(title: :asc)
-          if @previous_group = Group.where(topic_id: 7, description: 'description', title: 'title').first
+          if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title').first
               @previous_group.destroy
           end
     @menu_topics = Topic.all.order(title: :asc)
@@ -73,7 +73,7 @@ before_action :authenticate_user!, except: [:showAll]
 
   def update
     @user = User.find(params[:user_id])
-    if @new = Group.where(topic_id: 7, description: 'description', title: 'title', user_id: params[:user_id]).first
+    if @new = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
         @topic = Topic.find_by(title: params[:title])
         @new_attachment = ActiveStorage::Attachment.find(@new.image.id)
         new_record_id = @new_attachment.record_id
