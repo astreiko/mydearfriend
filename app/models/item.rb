@@ -12,6 +12,7 @@ class Item < ApplicationRecord
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  settings index: { number_of_shards: 1 }
 
 
 

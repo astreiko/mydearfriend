@@ -7,7 +7,7 @@ ruby '2.6.5'
 # Adding Elasticsearch
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
-gem 'bonsai-elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails', github: 'omc/bonsai-elasticsearch-rails', branch: '6.x'
 # Unobtrusive scripting adapter for jQuery
 gem 'jquery-rails'
 # Adding Bootstrap
