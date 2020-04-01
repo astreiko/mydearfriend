@@ -15,24 +15,14 @@
         <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
         <%= javascript_pack_tag 'application', 'data-turbolinks-eval': 'false', 'data-turbolinks-suppress-warning': 'true' %>
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-
 <style>
-
-
-td p {
-margin: 10px 0;
-}
-
+td p {margin: 10px 0;}
 .comments table {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 10px;
-  background-color: Lavender;
-
-
-
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    background-color: Lavender;
     width: 40%;
     padding: 1%;
     text-align: left;
@@ -45,370 +35,151 @@ border-radius: 3px;
     padding: 1%;
     text-align: left;
 }
-.comment-btn-ok{
-    width: 40%;
-}
-
+.comment-btn-ok{width: 40%;}
 input {
     border: 1px solid gray;
     border-radius: 3px;
-
 }
 input:hover, textarea:hover {
     border: 1px solid DodgerBlue;
     border-radius: 3px;
-
 }
-
-
 a:link {
     color: black;
     text-decoration: none;
 }
-a:visited {
-    color: black;
-}
+a:visited {color: black;}
 a:hover {
     color: Blue;
     background: none;
 }
-
-
-
-
-
 .table-hover tbody tr:hover {
-background: none;
-box-shadow: inset 0 0 200px 5px LightYellow;
-
-border-radius: 10px;
-
-
+    background: none;
+    box-shadow: inset 0 0 200px 5px LightYellow;
+    border-radius: 10px;
 }
-
-select:invalid:not(:focus) {
- color: gray;
-}
-select:invalid:focus {
- color: transparent;
-}
-select:focus option {
- color: initial;
-}
-
-
-body {
- background-color: #fffcfc;
-}
-
+select:invalid:not(:focus) {color: gray;}
+select:invalid:focus {color: transparent;}
+select:focus option {color: initial;}
+body {background-color: #fffcfc;}
 .hello-my-dear-friends {
- font-family: Comic Sans MS;
- font-style: italic;
- font-weight: bold;
+    font-family: Comic Sans MS;
+    font-style: italic;
+    font-weight: bold;
 }
-
-
-
-  .comments span {
-     color: gray;
-     font-size: 80%;
-  }
- .comments div {
-    color: blue;
- }
-
- .trix-content{
- text-align: justify;
- }
-
-  table{
- word-break: break-all;
-  }
-
-
-
-<!-- Для item showAll -->
-
+.comments span {
+    color: gray;
+    font-size: 80%;
+}
+.comments div {color: blue;}
+.trix-content{text-align: justify;}
+table{word-break: break-all;}
 .sortable .head h3 {cursor:pointer}
 .sortable .head h3:after {content: "\1F859";}
 .sortable .desc h3 {cursor:pointer}
 .sortable .desc h3:after {content: "\1F853";}
 .sortable .asc h3 {cursor:pointer}
 .sortable .asc h3:after {content: "\1F851";}
-
-.markdown-justify {
- text-align: justify;
-}
-
-
-.button-img {
- height: 20px;
-}
-
-
-
-
-
-<!-- Для index -->
-
-
-.button-top{
-
-
-  margin-left: 5%;
-
-}
-
-
+.markdown-justify {text-align: justify;}
+.button-img {height: 20px;}
+.button-top{margin-left: 5%;}
 .input-search {
- height: 42px;
- width: 0;
- padding: 0 42px 0 15px;
- border: none;
- border-bottom: 2px solid transparent;
- margin-right: 5%;
- outline: none;
- background: transparent;
- background-image: url(assets/search.png);
- background-repeat: no-repeat;
- background-size: contain;
- right: 1%;
- position: absolute;
- margin-top: 2%;
-
- opacity: .3;
-
+    height: 42px;
+    width: 0;
+    padding: 0 42px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-right: 5%;
+    outline: none;
+    background: transparent;
+    background-image: url(assets/search.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    right: 1%;
+    position: absolute;
+    margin-top: 2%;
+    opacity: .3;
 }
-
 .input-search:hover {
- background-image: none;
- width: 100%;
- border-bottom: 1px solid black;
- opacity: 1;
+    background-image: none;
+    width: 100%;
+    border-bottom: 1px solid black;
+    opacity: 1;
 }
-
-.button-search {
- visibility: hidden;
-}
-
+.button-search {visibility: hidden;}
 .a-border:hover {
  border: 1px solid;
- border-radius: 10px;
+    border-radius: 10px;
 }
-.hello {
- font-size: 180%;
-}
-
-
-.height-slide {
- height: 400px;
-}
-
-
-.index-img{
- position: relative;
-}
+.hello {font-size: 180%;}
+.height-slide {height: 400px;}
+.index-img{position: relative;}
 .bg-img{
- width: 100%;
-@include background-image();
+    width: 100%;
+    @include background-image();
 }
-.bg-img-height{
- height: 500px;
-}
-
-.scale {
- transition: 0.4s;
-}
-.scale:hover {
- transform: scale(1.02);
-}
-
-
-
-
-
-
-
-
-
-
-
-
+.bg-img-height{height: 500px;}
+    .scale {transition: 0.4s;}
+    .scale:hover {transform: scale(1.02);}
 @media screen and (max-width: 1200px) {
- .hello-text{
-     font-size: 14px;
- }
- .bg-img-height{
-     height: 400px;
- }
-
-
-
-
+    .hello-text{font-size: 14px;}
+    .bg-img-height{height: 400px;}
 }
 @media screen and (max-width: 992px) {
- .hello, .title {
-     font-size: 150%;
- }
- .hello-text{
-     font-size: 12px;
- }
- .posit-abs{
-     position: absolute;
-
- }
- .bg-img-height{
-     height: 400px;
- }
-
-
-
-
+    .hello, .title {font-size: 150%;}
+    .hello-text{font-size: 12px;}
+    .posit-abs{position: absolute;}
+    .bg-img-height{height: 400px;}
 }
 @media screen and (max-width: 768px) {
- .hello, .title {
-     font-size: 20px;
- }
- .button-text {
-     font-size: 70%;
- }
- .hello-text{
-     font-size: 10px;
- }
- .bg-img-height{
-     height: 350px;
- }
- .h1-size{
-     font-size: 26px;
- }
- .bt-text-size{
-     font-size: 20px;
- }
- .group-image-none{
-     display: none;
- }
- .item-showall-text{
-     font-size: 20px;
- }
-.comments table, .comment-text-area, .comment-btn-ok{
-    width: 50%;
-}
-.item-showall-table {
- display: none;
-}
-
-
-
+    .hello, .title {font-size: 20px;}
+    .button-text {font-size: 70%;}
+    .hello-text{font-size: 10px;}
+    .bg-img-height{height: 350px;}
+    .h1-size{font-size: 26px;}
+    .bt-text-size{font-size: 20px;}
+    .group-image-none{display: none;}
+    .item-showall-text{font-size: 20px;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
+    .item-showall-table {display: none;}
 }
 @media screen and (min-width: 401px) and (max-width: 575px) {
- .hello, .hello-text {
-     display: none;
- }
- .input-search:focus {
-     width: 200px;
- }
-
- .button-text {
-     font-size: 70%;
- }
- .bg-img-height{
-     height: 300px;
- }
- .h1-size{
-     font-size: 24px;
- }
- .bt-text-size{
-     font-size: 20px;
- }
- .input-search {
-     margin-top: 10%;
- }
- .sortable td:nth-child(3){display:none;}
- .sortable th:nth-child(3){display:none;}
- .sortable td:nth-child(2){display:none;}
- .sortable th:nth-child(2){display:none;}
-.comments table, .comment-text-area, .comment-btn-ok{
-    width: 100%;
-}
-.item-showall-table-email{
-     display: none;
-}
-
+    .hello, .hello-text {display: none;}
+    .input-search:focus {width: 200px;}
+    .button-text {font-size: 70%;}
+    .bg-img-height{height: 300px;}
+    .h1-size{font-size: 24px;}
+    .bt-text-size{font-size: 20px;}
+    .input-search {margin-top: 10%;}
+    .sortable td:nth-child(3){display:none;}
+    .sortable th:nth-child(3){display:none;}
+    .sortable td:nth-child(2){display:none;}
+    .sortable th:nth-child(2){display:none;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
+    .item-showall-table-email{display: none;}
 }
 @media screen and (max-width: 400px) {
- .hello, .hello-text {
-     display: none;
- }
- .input-search:focus {
-     width: 150px;
- }
- .button-text {
-     font-size: 50%;
- }
- .bg-img-height{
-     height: 250px;
- }
- .h1-size{
-     font-size: 16px;
- }
- .bt-text-size{
-     font-size: 16px;
- }
- .input-search {
-     margin-top: 10%;
- }
- .sortable td:nth-child(3){display:none;}
- .sortable th:nth-child(3){display:none;}
- .sortable td:nth-child(2){display:none;}
- .sortable th:nth-child(2){display:none;}
-.comments table, .comment-text-area, .comment-btn-ok{
-    width: 100%;
+    .hello, .hello-text {display: none;}
+    .input-search:focus {width: 150px;}
+    .button-text {font-size: 50%;}
+    .bg-img-height{height: 250px;}
+    .h1-size{font-size: 16px; }
+    .bt-text-size{font-size: 16px;}
+    .input-search {margin-top: 10%;}
+    .sortable td:nth-child(3){display:none;}
+    .sortable th:nth-child(3){display:none;}
+    .sortable td:nth-child(2){display:none;}
+    .sortable th:nth-child(2){display:none;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
+    .item-showall-table-email{display: none;}
 }
-.item-showall-table-email{
-     display: none;
-}
-
-}
-
-
 @media screen and (min-width: 576px) {
- .hello-short {
-     display: none;
- }
-
+.   hello-short {display: none;}
 }
-
-
-
 @media screen and (min-width: 768px) {
- .container-width-50 {
-     width: 50%
- }
-
+    .container-width-50 {width: 50%}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </style>
+</style>
 </head>
 <body>
 <div class="container-fluid">
@@ -418,119 +189,74 @@ body {
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <div class="navbar-brand hello hello-my-dear-friends" href="#" >
-
                 Hello ...my dear friends!
-
             </div>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active home">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'Home', root_path %>&nbsp;&nbsp;&nbsp;
-
                     <span class="sr-only">(current)</span></a>
                 </li>
-<% if user_signed_in? %>
+                <% if user_signed_in? %>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
 
                         <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>&nbsp;&nbsp;&nbsp;
-
                     <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item my_collection">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'My collection', user_root_path(:id => current_user.id) %>&nbsp;&nbsp;&nbsp;
-
                     </a>
                 </li>
-<% if current_user.admin? %>
+                <% if current_user.admin? %>
                 <li class="nav-item user_management">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'User management', management_path %>&nbsp;&nbsp;&nbsp;
-
                     </a>
                 </li>
-<% end %>
+                <% end %>
                 <li class="nav-item">
-
-<% else %>
+                <% else %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'Log in', new_user_session_path %>&nbsp;&nbsp;&nbsp;
-
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'Sign up', new_user_registration_path %>&nbsp;&nbsp;&nbsp;
-
                     </a>
                 </li>
-<% end %>
+                <% end %>
                 <li class="nav-item topics">
                     <a class="nav-link" href="#">
-
                         <%= link_to 'Topics', topics_show_path %>
-
                     </a>
                 </li>
                 <% if @menu_topics_yes %>
                 <li class="nav-item dropdown topics">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-
                         <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" style="background-color: #fffcfc;">
-
                             <% @menu_topics.each do |topic| %>
                                 <li class="menu-topic-hover-color">&nbsp;<%= link_to topic.title, items_index3_path(:topic_id => topic.id), style: " font-size: 80%" %></li>
                             <% end %>
-
                         </ul>
-
                 <% end %>
-                                            </li>
-                                                <li class="nav-item topics">
-                                                    <a class="nav-link" href="#">
-
-
-
-                                                    </a>
-                                                </li>
+                </li>
+                <li class="nav-item topics">
+                    <a class="nav-link" href="#">
+                    </a>
+                </li>
             </ul>
             <%= form_tag items_path, role: 'search', method: :get do |f| %>
             <%= text_field_tag :q, "", placeholder: "...", class: "form-control mr-sm-2" %>
             <% end %>
         </div>
     </nav>
-</div>
-<br/><br/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div><br/><br/>
     <%= yield %>
 </body>
 </html>

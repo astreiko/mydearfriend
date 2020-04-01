@@ -5,14 +5,7 @@
 <style>
 .image{opacity: 0;}
 </style>
-
-
-
 <br/>
-
-
-
-
 <h1 style="color: blue; text-align: center" class="item-showall-text">Add a collection</h1>
 <br/>
 <%= form_with(model: [ @user, @user.groups.build ], local: true) do |form| %>
@@ -40,10 +33,10 @@
             <select/>
         </div>
         <div class="actions">
-  <br/>
-    <center>
-             <%= form.submit 'Create', class: 'submit', class:"btn btn-primary", style: "background: blue", role:"button"  %>
-    </center>
+            <br/>
+            <center>
+                <%= form.submit 'Create', class: 'submit', class:"btn btn-primary", style: "background: blue", role:"button"  %>
+            </center>
         </div>
    </div>
 <% end %>

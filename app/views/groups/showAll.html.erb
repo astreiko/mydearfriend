@@ -1,15 +1,10 @@
 <% if user_signed_in? %>
     <% if (current_user.id == @user.id) %>
-<style>
-.my_collection {
-    display: none;
-}
-</style>
+        <style>.my_collection {display: none;}</style>
+    <% end %>
 <% end %>
-<% end %>
-
 <h2 style="color: blue; text-align: center" class="item-showall-text"><%= @user.name %> collection</h2>
-
+<div  class="container-fluid">
     <div class="row mb-2">
         <% @user.groups.each do |group| %>
             <div class="col-md-6">
@@ -62,5 +57,5 @@
             <% end %>
         <% end %>
     </div>
-</main>
+</div>
 <br/>

@@ -21,8 +21,6 @@ class HomeController < ApplicationController
             m = m + 1
           end
 
-
-
     @itemTag = ItemTag.all
         @allTags = []
                   i = 0

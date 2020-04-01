@@ -24,6 +24,4 @@ before_action :authenticate_admin!
             @menu_topics_yes = 1
   end
 
-
-
 end

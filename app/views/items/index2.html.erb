@@ -1,27 +1,19 @@
 <h2 style="color: blue; text-align: center" class="item-showall-text">Tag: <%= @tag.title %></h2>
 <br/>
 <div class="container marketing">
-
-
 <% @items.each_with_index do |item, index| %>
         <% if ((index + 3) % 3) == 0 %>
         <div class="row">
         <% end %>
-
-
               <div class="col-lg-4"><center>
-                <%= link_to image_tag(Group.find(item.group_id).image, style:"width: 140px; height: 140px; object-fit: cover", class: "rounded-circle", alt: "Generic placeholder image"), showOne_item_path(:id => item.id, :group_id => item.group_id)%>
-                 <h4><%= link_to item.title, showOne_item_path(:id => item.id, :group_id => item.group_id) %></h4>
-                <p>
-                <%= link_to "View details »",showOne_item_path(:id => item.id, :group_id => item.group_id), class: "btn btn-secondary", role: "button" %>
-                </p>
+                    <%= link_to image_tag(Group.find(item.group_id).image, style:"width: 140px; height: 140px; object-fit: cover", class: "rounded-circle", alt: "Generic placeholder image"), showOne_item_path(:id => item.id, :group_id => item.group_id)%>
+                    <h4><%= link_to item.title, showOne_item_path(:id => item.id, :group_id => item.group_id) %></h4>
+                    <p>
+                    <%= link_to "View details »",showOne_item_path(:id => item.id, :group_id => item.group_id), class: "btn btn-secondary", role: "button" %>
+                    </p>
               </center></div><!-- /.col-lg-4 -->
-
-
         <% if ((index + 1) % 3) == 0 %>
         </div><!-- /.row -->
         <% end %>
-
 <% end %>
-
 </div>
