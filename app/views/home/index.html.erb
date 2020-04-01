@@ -73,7 +73,7 @@
                             <%= group.created_at %>
                         </div>
                         <p class="card-text mb-auto">
-                            <%= markdown(@group.description) %>
+                            <%= markdown(group.description) %>
                         </p>
                         <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
                     </div>
