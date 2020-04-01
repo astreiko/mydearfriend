@@ -92,13 +92,14 @@ before_action :authenticate_user!, except: [:showAll]
                 @group.update(:topic_id => @topic.id)
                 @group.save
                 ActiveStorage::Blob.find(last_blob_id).destroy
+                redirect_to user_root_path(:id => @group.user_id)
     else
     @group = Group.find(params[:id])
     @group.update(create_params)
     @topic = Topic.find_by(title: params[:title])
     @group.update(:topic_id => @topic.id)
-    end
     redirect_to user_root_path(:id => @group.user_id)
+    end
   end
 
   def destroy
