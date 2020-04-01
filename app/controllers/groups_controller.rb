@@ -74,7 +74,6 @@ before_action :authenticate_user!, except: [:showAll]
   def update
     @user = User.find(params[:user_id])
     if @new = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
-        @topic = Topic.find_by(title: params[:title])
         @new_attachment = ActiveStorage::Attachment.find(@new.image.id)
         new_record_id = @new_attachment.record_id
         new_blob_id = @new_attachment.blob_id
@@ -88,16 +87,18 @@ before_action :authenticate_user!, except: [:showAll]
                 @new_attachment.save
                 @group_attachment.save
                 @group.update(create_params)
-                @topic = Topic.find_by(title: params[:title])
-                @group.update(:topic_id => @topic.id)
+                if @topic = Topic.find_by(title: params[:title])
+                    @group.update(:topic_id => @topic.id)
+                end
                 @group.save
                 ActiveStorage::Blob.find(last_blob_id).destroy
                 redirect_to user_root_path(:id => @group.user_id)
     else
     @group = Group.find(params[:id])
     @group.update(create_params)
-    @topic = Topic.find_by(title: params[:title])
-    @group.update(:topic_id => @topic.id)
+    if @topic = Topic.find_by(title: params[:title])
+        @group.update(:topic_id => @topic.id)
+    end
     redirect_to user_root_path(:id => @group.user_id)
     end
   end
