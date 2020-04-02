@@ -20,7 +20,6 @@ before_action :authenticate_user!
     else
        user.update!(active: 'true')
     end
-
     if current_user.active?
         redirect_to management_path
     else
@@ -31,12 +30,10 @@ before_action :authenticate_user!
 
   def destroy
     if params[:user_id] != nil
-
         @user = User.find(params[:user_id])
             @user.each do |user|
             user.destroy
         end
-
         if user_signed_in?
             redirect_to management_path
         else

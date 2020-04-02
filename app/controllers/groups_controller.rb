@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
 before_action :authenticate_user!, except: [:showAll]
 
-
     def upload
         if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:id]).first
             @previous_group.destroy
@@ -18,7 +17,7 @@ before_action :authenticate_user!, except: [:showAll]
         params.require(:group).permit(:image)
     end
 
-  def create
+    def create
     @user = User.find(params[:user_id])
     if @group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
         @group.update(create_params)
@@ -33,24 +32,23 @@ before_action :authenticate_user!, except: [:showAll]
         @group2.save!
     end
     redirect_to user_root_path(:id => @user.id)
-  end
+    end
 
-  def new
+    def new
           @user = User.find(params[:user_id])
           @userID = @user.id
           @topics = Topic.all.order(title: :asc)
           @users = User.all
           @group = Group.all
+    end
 
-  end
-
-  def showAll
-          @user = User.find(params[:id])
-          @groups = Group.find_by(user_id: params[:id])
-          @topics = Topic.all.order(title: :asc)
-          if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title').first
-              @previous_group.destroy
-          end
+    def showAll
+    @user = User.find(params[:id])
+    @groups = Group.find_by(user_id: params[:id])
+    @topics = Topic.all.order(title: :asc)
+    if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title').first
+      @previous_group.destroy
+    end
     @menu_topics = Topic.all.order(title: :asc)
     @activ_topics = []
     Group.all.each do |group|
@@ -58,41 +56,39 @@ before_action :authenticate_user!, except: [:showAll]
     end
     @menu_topics = @menu_topics.where(id: @activ_topics)
     @menu_topics_yes = 1
+    end
 
-
-  end
-
-  def edit
+    def edit
           @user = User.find(params[:user_id])
           @userID = @user.id
           @group = Group.find(params[:id])
           @topics = Topic.all.order(title: :asc)
           @groups = Group.all
           @mytopic = Topic.find(@group.topic_id).title
-  end
+    end
 
-  def update
+    def update
     @user = User.find(params[:user_id])
     if @new = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
         @new_attachment = ActiveStorage::Attachment.find(@new.image.id)
         new_record_id = @new_attachment.record_id
         new_blob_id = @new_attachment.blob_id
-                @group = Group.find(params[:id])
-                @group_attachment = ActiveStorage::Attachment.find(@group.image.id)
-                last_blob_id = @group_attachment.blob_id
-                last_record_id = @group_attachment.record_id
-                @new_attachment.record_id = last_record_id
-                @group_attachment.record_id = new_record_id
-                @group_attachment.blob_id = new_blob_id
-                @new_attachment.save
-                @group_attachment.save
-                @group.update(create_params)
-                if @topic = Topic.find_by(title: params[:title])
-                    @group.update(:topic_id => @topic.id)
-                end
-                @group.save
-                ActiveStorage::Blob.find(last_blob_id).destroy
-                redirect_to user_root_path(:id => @group.user_id)
+        @group = Group.find(params[:id])
+        @group_attachment = ActiveStorage::Attachment.find(@group.image.id)
+        last_blob_id = @group_attachment.blob_id
+        last_record_id = @group_attachment.record_id
+        @new_attachment.record_id = last_record_id
+        @group_attachment.record_id = new_record_id
+        @group_attachment.blob_id = new_blob_id
+        @new_attachment.save
+        @group_attachment.save
+        @group.update(create_params)
+        if @topic = Topic.find_by(title: params[:title])
+            @group.update(:topic_id => @topic.id)
+        end
+        @group.save
+        ActiveStorage::Blob.find(last_blob_id).destroy
+        redirect_to user_root_path(:id => @group.user_id)
     else
     @group = Group.find(params[:id])
     @group.update(create_params)
@@ -101,13 +97,13 @@ before_action :authenticate_user!, except: [:showAll]
     end
     redirect_to user_root_path(:id => @group.user_id)
     end
-  end
+    end
 
-  def destroy
+    def destroy
     @group = Group.find(params[:id])
     @group.destroy
     redirect_to user_root_path(:id => @group.user_id)
-  end
+    end
 
     def create_params
           params.require(:group).permit(:description, :title, :file)
