@@ -7,7 +7,7 @@
         <% end %>
               <div class="col-lg-4"><center>
                     <%= link_to image_tag(Group.find(item.group_id).image, style:"width: 140px; height: 140px; object-fit: cover", class: "rounded-circle", alt: "Generic placeholder image"), showOne_item_path(:id => item.id, :group_id => item.group_id)%>
-                    <p><% Group.find(item.group_id).title %></p>
+                    <p><%= Group.find(item.group_id).title %></p>
                     <h4><%= link_to item.title, showOne_item_path(:id => item.id, :group_id => item.group_id) %></h4>
                     <p>
                     <%= link_to "View details »",showOne_item_path(:id => item.id, :group_id => item.group_id), class: "btn btn-secondary", role: "button" %>
