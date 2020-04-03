@@ -3,14 +3,31 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
 
     def index
         @q = params[:q]
-        @items = Item.search((params[:q].present? ? params[:q] : '*')).records
-            @menu_topics = Topic.all.order(title: :asc)
-            @activ_topics = []
-            Group.all.each do |group|
-                @activ_topics.push(group.topic_id)
+        @results = []
+        if @items = Item.search((params[:q].present? ? params[:q] : '*')).records
+            @items.each do |item|
+                @results.push(item.id)
             end
-            @menu_topics = @menu_topics.where(id: @activ_topics)
-            @menu_topics_yes = 1
+        end
+        if @groups = Group.search((params[:q].present? ? params[:q] : '*')).records
+            @groups.each do |group|
+                Item.where(group_id: group.id).each do |item|
+                    @results.push(item.id)
+                end
+            end
+        end
+        if @comments = Comment.search((params[:q].present? ? params[:q] : '*')).records
+            @comments.each do |comment|
+                @results.push(comment.item_id)
+            end
+        end
+        @menu_topics = Topic.all.order(title: :asc)
+        @activ_topics = []
+        Group.all.each do |group|
+            @activ_topics.push(group.topic_id)
+        end
+        @menu_topics = @menu_topics.where(id: @activ_topics)
+        @menu_topics_yes = 1
     end
 
     def index2

@@ -1,7 +1,7 @@
 <h2 style="color: blue; text-align: center" class="item-showall-text">Search: <%= @q %></h2>
 <br/>
 <div class="container marketing">
-<% @items.each_with_index do |item, index| %>
+<% Item.where(id: @results).each_with_index do |item, index| %>
         <% if ((index + 3) % 3) == 0 %>
         <div class="row">
         <% end %>
