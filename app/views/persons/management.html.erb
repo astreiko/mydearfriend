@@ -27,15 +27,13 @@
                         <tbody>
                         <tr><td></td></tr>
                             <% @users.each do |user| %><% if user.id!=1 %>
+                                <% if user.groups.size > 0 %>
+                                <tr style="cursor: pointer; color: blue;" onclick="window.location.href='https://mydearfriend.herokuapp.com/groups/showAll?id=<%= user.id %>';" >
+                                <% else %>
                                 <tr>
+                                <% end %>
                                     <td><%= check_box_tag 'user_id[]', user.id %></td>
-                                    <td>
-                                        <% if user.groups.size > 0 %>
-                                            <%= link_to user.name, user_root_path(:id => user.id), style: "color: blue;" %>
-                                        <% else %>
-                                            <%= user.name %>
-                                        <% end %>
-                                    </td>
+                                    <td><%= user.name %></td>
                                     <td class="item-showall-table-email"><%= user.email %></td>
                                     <td class="item-showall-table"><%= user.created_at %></td>
                                     <td class="item-showall-table"><%= user.current_sign_in_at %></td>
@@ -57,6 +55,7 @@
                                             <% end %>
                                         <% end %>
                                     </td>
+
                                 </tr>
                             <% end %><% end %>
                         </tbody>

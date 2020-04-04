@@ -57,9 +57,9 @@ $(".xxx").click(function() {
                     <tbody>
                       <% @group.items.each do |item| %>
                         <tr style="cursor: pointer">
-                        <td onclick="window.location.href='http://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.title%></td>
-                        <td onclick="window.location.href='http://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';" class="xxx"><%= item.created_at %></td>
-                        <td onclick="window.location.href='http://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.updated_at %></td>
+                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.title%></td>
+                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';" class="xxx"><%= item.created_at %></td>
+                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.updated_at %></td>
                             <% if user_signed_in? %>
                             <% if (current_user.id == @group.user_id) || (current_user.admin) %>
                         <td>
