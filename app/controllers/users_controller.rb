@@ -28,6 +28,15 @@ before_action :authenticate_user!
     end
   end
 
+  def style
+    @user = User.find(params[:user_id])
+    if @user.style=="light"
+        @user.update(style: "dark")
+    else
+        @user.update(style: "light")
+    end
+  end
+
   def destroy
     if params[:user_id] != nil
         @user = User.find(params[:user_id])

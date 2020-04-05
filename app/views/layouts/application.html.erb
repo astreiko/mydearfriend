@@ -17,6 +17,20 @@
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <style>
 td p {margin: 10px 0;}
+.comment-text-area{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 3px;
+    width: 40%;
+    padding: 1%;
+    text-align: left;}
+.comment-btn-ok{width: 40%;}
+input {
+    border: 1px solid gray;
+    border-radius: 3px;}
+input:hover, textarea:hover {
+    border: 1px solid DodgerBlue;
+    border-radius: 3px;}
 .comments table {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -25,55 +39,20 @@ td p {margin: 10px 0;}
     background-color: Lavender;
     width: 40%;
     padding: 1%;
-    text-align: left;
-}
-.comment-text-area{
-    border: 1px solid black;
-    background-color: white;
-border-radius: 3px;
-    width: 40%;
-    padding: 1%;
-    text-align: left;
-}
-.comment-btn-ok{width: 40%;}
-input {
-    border: 1px solid gray;
-    border-radius: 3px;
-}
-input:hover, textarea:hover {
-    border: 1px solid DodgerBlue;
-    border-radius: 3px;
-}
-a:link {
-    color: black;
-    text-decoration: none;
-}
-a:visited {color: black;}
-a:hover {
-    color: Blue;
-    background: none;
-}
+    text-align: left;}
 .table-hover tbody tr:hover {
     background: none;
     box-shadow: inset 0 0 200px 5px LightYellow;
-    border-radius: 10px;
-}
+    border-radius: 10px;}
 select:invalid:not(:focus) {color: gray;}
 select:invalid:focus {color: transparent;}
 select:focus option {color: initial;}
-body {background-color: #fffcfc;}
 .hello-my-dear-friends {
     font-family: Comic Sans MS;
     font-style: italic;
-    font-weight: bold;
-}
-.comments span {
-    color: gray;
-    font-size: 80%;
-}
-.comments div {color: blue;}
+    font-weight: bold;}
 .trix-content{text-align: justify;}
-table{word-break: break-all;}
+table {word-break: break-all;}
 .sortable .head h3 {cursor:pointer}
 .sortable .head h3:after {content: "\1F859";}
 .sortable .desc h3 {cursor:pointer}
@@ -82,7 +61,7 @@ table{word-break: break-all;}
 .sortable .asc h3:after {content: "\1F851";}
 .markdown-justify {text-align: justify;}
 .button-img {height: 20px;}
-.button-top{margin-left: 5%;}
+.button-top {margin-left: 5%;}
 .input-search {
     height: 42px;
     width: 0;
@@ -98,39 +77,35 @@ table{word-break: break-all;}
     right: 1%;
     position: absolute;
     margin-top: 2%;
-    opacity: .3;
-}
+    opacity: .3;}
 .input-search:hover {
     background-image: none;
     width: 100%;
     border-bottom: 1px solid black;
-    opacity: 1;
-}
+    opacity: 1;}
 .button-search {visibility: hidden;}
 .a-border:hover {
- border: 1px solid;
-    border-radius: 10px;
-}
+    border: 1px solid;
+    border-radius: 10px;}
 .hello {font-size: 180%;}
 .height-slide {height: 400px;}
 .index-img{position: relative;}
 .bg-img{
     width: 100%;
-    @include background-image();
-}
+    @include background-image();}
 .bg-img-height{height: 500px;}
     .scale {transition: 0.4s;}
     .scale:hover {transform: scale(1.02);}
+.red-del{font-weight: bold}
+.red-del:hover{color: red}
 @media screen and (max-width: 1200px) {
     .hello-text{font-size: 14px;}
-    .bg-img-height{height: 400px;}
-}
+    .bg-img-height{height: 400px;}}
 @media screen and (max-width: 992px) {
     .hello, .title {font-size: 150%;}
     .hello-text{font-size: 12px;}
     .posit-abs{position: absolute;}
-    .bg-img-height{height: 400px;}
-}
+    .bg-img-height{height: 400px;}}
 @media screen and (max-width: 768px) {
     .hello, .title {font-size: 20px;}
     .button-text {font-size: 70%;}
@@ -141,8 +116,7 @@ table{word-break: break-all;}
     .group-image-none{display: none;}
     #table-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
-    .item-showall-table {display: none;}
-}
+    .item-showall-table {display: none;}}
 @media screen and (min-width: 401px) and (max-width: 575px) {
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 200px;}
@@ -153,11 +127,9 @@ table{word-break: break-all;}
     .input-search {margin-top: 10%;}
     .sortable td:nth-child(3){display:none;}
     .sortable th:nth-child(3){display:none;}
-
     #table-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
-    .item-showall-table-email{display: none;}
-}
+    .item-showall-table-email{display: none;}}
 @media screen and (max-width: 400px) {
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 150px;}
@@ -172,25 +144,64 @@ table{word-break: break-all;}
     .sortable th:nth-child(2){display:none;}
     #table-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
-    .item-showall-table-email{display: none;}
-}
+    .item-showall-table-email{display: none;}}
 @media screen and (min-width: 576px) {
-.   hello-short {display: none;}
-}
+    .hello-short {display: none;}}
 @media screen and (min-width: 768px) {
-    .container-width-50 {width: 50%}
-}
+    .container-width-50 {width: 50%}}
+<% if current_user && current_user.style == "dark" %>
+body, .nav-color {background-color: #4a4846; color: white;}
+.welcom, .color-wh, .text-mut {color: white}
+a:link {
+    color: white;
+    text-decoration: none;}
+a:visited {color: white;}
+a:hover {
+    color: SkyBlue;
+    background: none;}
+.bl-color{color: SkyBlue}
+.bl-b-color{background: SkyBlue; color: black}
+.thead-tab{box-shadow: inset 0 0 200px 5px SkyBlue; color: black;}
+.wt-b-color{background: DimGrey}
+.comments table {
+    background-color: Grey;}
+.comments span {
+    color: Gainsboro;
+    font-size: 80%;}
+.comments div {color: SkyBlue;}
+<% else %>
+body, .nav-color {background-color: #fffcfc;}
+.welcom{color: gray}
+a:link {
+    color: black;
+    text-decoration: none;}
+a:visited {color: black;}
+a:hover {
+    color: Blue;
+    background: none;}
+.text-mut{color: gray}
+.bl-color{color: blue}
+.bl-b-color{background: blue}
+.wt-b-color{background: white}
+.thead-tab{box-shadow: inset 0 0 200px 5px blue; color: white;}
+.comments table {
+    background-color: Lavender;}
+.comments span {
+    color: gray;
+    font-size: 80%;}
+.comments div {color: blue;}
+<% end %>
 </style>
 </head>
 <body>
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top posit-abs" style="background-color: #fffcfc; border: none; border-bottom: 1px solid lightgray;">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top posit-abs nav-color" style="border: none; border-bottom: 1px solid lightgray;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <div class="navbar-brand hello hello-my-dear-friends" href="#" >
-                Hello ...my dear friends!
+                <span class="color-wh">Hello ...my dear friends!</span>
             </div>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active home">
@@ -240,7 +251,7 @@ table{word-break: break-all;}
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu" style="background-color: #fffcfc;">
+                        <ul class="dropdown-menu nav-color">
                             <% @menu_topics.each do |topic| %>
                                 <li class="menu-topic-hover-color">&nbsp;<%= link_to topic.title, items_index3_path(:topic_id => topic.id), style: " font-size: 80%" %></li>
                             <% end %>
@@ -259,7 +270,15 @@ table{word-break: break-all;}
     </nav>
 </div><br/><br/>
     <%= yield %>
+
+
 </body>
+<hr/>
+<% if user_signed_in? %>
+    <p class="text-mut" style="text-align: right;cursor:pointer">
+        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark style<% else %>Light style<% end %></a>
+    </p>
+<% end %>
 </html>
 
 

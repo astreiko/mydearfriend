@@ -3,7 +3,7 @@
         <style>.my_collection {display: none;}</style>
     <% end %>
 <% end %>
-<h2 style="color: blue; text-align: center" class="item-showall-text"><%= @user.name %> collection</h2>
+<h2 style="text-align: center" class="item-showall-text bl-color"><%= @user.name %> collection</h2>
 <div  class="container-fluid">
     <div class="row mb-2">
         <% @user.groups.each do |group| %>
@@ -17,7 +17,7 @@
                 <% end %>
                 <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">
+                        <strong class="d-inline-block mb-2 bl-color">
                             <%= User.find(group.user_id).name %>
                         </strong>
                         <h3 class="mb-0">

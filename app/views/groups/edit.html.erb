@@ -6,11 +6,11 @@
 <% end %>
 <style>.image{opacity: 0;}</style>
 <br/>
-<h1 style="color: blue; text-align: center" class="item-showall-text">Сollection editing</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color">Сollection editing</h1>
 <%= form_for :group, url: user_group_path(:user_id => @group.user_id), method: :patch do |form| %>
     <div class="form-group">
         <strong>If you want to change the image, upload a new one</strong>
-        <div id="image-photo" class="field dropzone">
+        <div id="image-photo" class="field dropzone" style="color:black">
             <%= form.file_field :image, class: "image" %>
         </div>
         <div class="field">
@@ -40,7 +40,7 @@
         <div class="actions">
             <br/>
             <center>
-             <%= form.submit 'Save', class: 'submit', class:"btn btn-primary", style: "background: blue", role:"button"  %>
+             <%= form.submit 'Save', class: 'submit', class:"btn btn-primary bl-b-color", role:"button"  %>
             </center>
         </div>
    </div>

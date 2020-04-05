@@ -1,4 +1,4 @@
-<h2 style="color: blue; text-align: center" class="item-showall-text">Search: <%= @q %></h2>
+<h2 style="text-align: center" class="item-showall-text bl-color">Search: <%= @q %></h2>
 <br/>
 <div class="container marketing">
 <% Item.where(id: @results).each_with_index do |item, index| %>

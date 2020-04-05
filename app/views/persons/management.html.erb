@@ -13,7 +13,7 @@
                 <main class="table-hover">
                     <table>
                         <thead>
-                            <tr height="15" style="box-shadow: inset 0 0 200px 5px blue;border-radius: 10px;color: white; text-align: center;">
+                            <tr height="15" style="border-radius: 10px;text-align: center;" class="thead-tab">
                                 <th height="30"><input onclick="if($(this).attr('checked')) $(this).closest('table').find(':checkbox').attr('checked', true); else $(this).closest('table').find(':checkbox').attr('checked', false);" id="select_all" type="checkbox"></th>
                                 <th>Name</th>
                                 <th class="item-showall-table-email">Email</th>
@@ -28,7 +28,7 @@
                         <tr><td></td></tr>
                             <% @users.each do |user| %><% if user.id!=1 %>
                                 <% if user.groups.size > 0 %>
-                                <tr style="cursor: pointer; color: blue;" onclick="window.location.href='https://mydearfriend.herokuapp.com/groups/showAll?id=<%= user.id %>';" >
+                                <tr style="cursor: pointer;" class="bl-color" onclick="window.location.href='https://mydearfriend.herokuapp.com/groups/showAll?id=<%= user.id %>';" >
                                 <% else %>
                                 <tr>
                                 <% end %>
@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
                     <br/>
-                    <%= submit_tag "Delete users", data: { confirm: 'Are you sure?' }, class:"btn btn-primary bt-text-size", style: "background: blue", role:"button"  %>
+                    <%= submit_tag "Delete users", data: { confirm: 'Are you sure?' }, class:"btn btn-primary bt-text-size bl-b-color", role:"button"  %>
                 </main>
             </center>
             <% end %>

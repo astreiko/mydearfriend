@@ -14,7 +14,7 @@ $(document).on('click', '.tags', function () {
 });
 </script>
 <br/>
-<h1 style="color: blue; text-align: center" class="item-showall-text">Item editing</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color">Item editing</h1>
 <%= form_for :item, url: group_item_path(:group_id => @item.group_id), method: :patch do |form| %>
     <p><%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %></p>
     <p><%= form.rich_text_area :text, :required => 'required' %></p>
@@ -53,8 +53,8 @@ $(document).on('click', '.tags', function () {
     <p>
         <br/>
         <center>
-            <%= form.submit 'Save', class:"btn btn-primary", style: "background: blue", role:"button" %><br/>
-            <%= link_to "Delete", [@group.items.find_by(id: @item.id, group_id: @group.id).group, @group.items.find_by(id: @item.id, group_id: @group.id)], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary", style: "background: red; color: white", role:"button" %>
+            <%= form.submit 'Save', class:"btn btn-primary bl-b-color", role:"button" %>&nbsp;&nbsp;&nbsp;
+            <%= link_to "Delete", [@group.items.find_by(id: @item.id, group_id: @group.id).group, @group.items.find_by(id: @item.id, group_id: @group.id)], method: :delete, data: { confirm: 'Are you sure?' }, class: "red-del" %>
         </center>
     </p>
 <% end %>

@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 
     def index
     @item = Item.all.order(created_at: :desc).limit(3)
-
     @menu_topics = Topic.all.order(title: :asc)
     @activ_topics = []
     Group.all.each do |group|

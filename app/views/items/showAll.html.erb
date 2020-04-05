@@ -33,7 +33,7 @@ h3 {font-size: 120%; text-align: center;}
         </div>
         <div class="col">
             <br/>
-            <h2 style="color: blue; text-align: center" class="item-showall-text"><%= @group.title %></h2>
+            <h2 style="text-align: center" class="item-showall-text bl-color"><%= @group.title %></h2>
             <span class="markdown-justify"><%= markdown(@group.description) %></span>
             <span class="markdown-justify">Автор: <%= link_to User.find(@group.user_id).name, user_root_path(:id => User.find(@group.user_id).id) %></span>
         </div>

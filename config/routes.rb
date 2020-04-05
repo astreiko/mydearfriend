@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'items/showOne', as: 'showOne_item'
   get 'items/show'
   get 'items/likes', as: 'likes'
+  get 'users/style', as: 'style'
   get 'items/index2', as: 'items_index2'
   get 'items/index3', as: 'items_index3'
   get 'items/loadingLikes', as: 'loadingLikes'

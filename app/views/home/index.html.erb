@@ -4,7 +4,7 @@
         <div class="col-12">
             <center>
                 <div class="nav-scroller py-1 mb-2 hello-text">
-                    <p style="font-size: 100%; color: gray">
+                    <p class="welcom">
                         <span style="color: red;">admin: admin@mail.ru password: 123456</span>
                         <br/>Welcome to mydearfriends.herokuapp.com. Here you can read a lot of interesting things about everything in the world. Perhaps you like to travel or you are not indifferent to cooking. Or maybe you want to keep your personal diary. Put here what you would like to share with people, and the world will hear you.
                     </p>
@@ -29,7 +29,7 @@
                     <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                         <div class="carousel-caption background-item">
                             <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
-                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
+                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                         <div class="carousel-caption background-item">
                             <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
-                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size", role:"button" %></p>
+                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             <div class="col-md-6">
                 <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">
+                        <strong class="d-inline-block mb-2 bl-color">
                             <%= User.find(group.user_id).name %>
                         </strong>
                         <h3 class="mb-0">
@@ -94,7 +94,7 @@
             <center>
                 <nav style="line-height: 2">
                     <% @tags.each do |tag| %>
-                        <span style="white-space: nowrap;"><%= link_to tag.title, items_index2_path(:tag_id => tag.id), class: "p-2 text-muted a-border" %></span>
+                        <span style="white-space: nowrap;"><%= link_to tag.title, items_index2_path(:tag_id => tag.id), class: "p-2 text-mut a-border"%></span>
                     <% end %>
                 </nav>
                 <br/>
