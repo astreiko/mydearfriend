@@ -14,15 +14,15 @@
             <%= form.file_field :image, class: "image" %>
         </div>
         <div class="field">
-            <strong>Title</strong>
+            <strong><%= @lang.find(15).string %></strong>
             <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
         </div>
         <div class="field">
-            <strong>Description</strong>
+            <strong><%= @lang.find(16).string %></strong>
             <%= form.text_area :description, :required => 'required', style: "height: 100px;width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
         </div>
         <div class="field">
-            <strong>Topic</strong>
+            <strong><%= @lang.find(17).string %></strong>
             <select name='title' required>
                     <option value="" hidden disabled selected></option>
                     <% @topics.each do |topic| %>
