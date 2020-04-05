@@ -47,9 +47,9 @@ h3 {font-size: 120%; text-align: center;}
                 <table id="table" class="sortable">
                     <thead>
                       <tr>
-                         <th><h3 class="item-showall-text" >Title&nbsp;</h3></th>
-                         <th><h3 class="item-showall-text">Created at&nbsp;</h3></th>
-                         <th><h3 class="item-showall-text">Updated at&nbsp;</h3></th>
+                         <th><h3>Title&nbsp;</h3></th>
+                         <th><h3>Created at&nbsp;</h3></th>
+                         <th><h3>Updated at&nbsp;</h3></th>
                          <% if @item1 %>
                             <% @item_apps.where(item_id: @item1.id).each do |item_app| %>
                                 <th id="table-none"><h3><%= @group_apps.find(item_app.group_app_id).title %>&nbsp;</h3></th>
