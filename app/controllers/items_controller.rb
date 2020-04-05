@@ -123,8 +123,10 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
                 if @new_tag = Tag.find_by(title: value)
                     @itemTag = ItemTag.create!(tag_id:  @new_tag.id, item_id:  @item.id)
                 else
-                    @newTag = Tag.create!(title: value)
-                    @itemTag = ItemTag.create!(tag_id:  @newTag.id, item_id:  @item.id)
+                    unless value.empty?
+                        @newTag = Tag.create!(title: value)
+                        @itemTag = ItemTag.create!(tag_id:  @newTag.id, item_id:  @item.id)
+                    end
                 end
             end
             redirect_to showAll_item_path(:group_id => @group.id)
@@ -280,7 +282,7 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
             end
             @tag = params[:tags]
             @tag.each do |value|
-                if !value.blank?
+                unless value.empty?
                     if @new_tag = Tag.find_by(title: value)
                         @itemTag = ItemTag.new(tag_id:  @new_tag.id, item_id:  @item.id)
                         @itemTag.save
