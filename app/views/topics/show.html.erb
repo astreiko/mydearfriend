@@ -13,7 +13,7 @@
                     </nav>
                     <% if user_signed_in? %>
                         <% if current_user.admin? %>
-                            <br/><br/><h2 class="bl-color" class="item-showall-text">Add a topic</h2><br/>
+                            <br/><br/><br/><br/>
                             <%= form_with(model: [ @topics.build ], local: true) do |form| %>
                                 <p><%= form.text_field :title, placeholder: "...", class: 'tags' %></p>
                                 <p><%= submit_tag @lang.find(11).string, class:"btn btn-primary bl-b-color", role:"button"  %></p>
