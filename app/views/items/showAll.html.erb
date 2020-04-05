@@ -50,20 +50,16 @@ h3 {font-size: 120%; text-align: center;}
                          <th><h3 class="item-showall-text" >Title&nbsp;</h3></th>
                          <th><h3 class="item-showall-text">Created at&nbsp;</h3></th>
                          <th><h3 class="item-showall-text">Updated at&nbsp;</h3></th>
-                            <% if @item_apps.where(item_id: @item1.id) %>
-                                <% @item_apps.where(item_id: @item1.id).each do |item_app| %>
-                                    <th><h3><%= @group_apps.find(item_app.group_app_id).title %>&nbsp;</h3></th>
-
-
-
-                                <% end %>
+                         <% if @item1 %>
+                            <% @item_apps.where(item_id: @item1.id).each do |item_app| %>
+                                <th><h3><%= @group_apps.find(item_app.group_app_id).title %>&nbsp;</h3></th>
                             <% end %>
-
-                            <% if user_signed_in? %>
-                            <% if (current_user.id == @group.user_id) || (current_user.admin) %>
+                         <% end %>
+                         <% if user_signed_in? %>
+                             <% if (current_user.id == @group.user_id) || (current_user.admin) %>
                                 <th class="nosort"></th>
-                            <% end %>
-                            <% end %>
+                             <% end %>
+                         <% end %>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,37 +68,37 @@ h3 {font-size: 120%; text-align: center;}
                         <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.title%></td>
                         <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';" class="xxx"><%= item.created_at %></td>
                         <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.updated_at %></td>
-                            <% if @item_apps.where(item_id: item.id) %>
-                                <% @item_apps.where(item_id: item.id).each do |item_app| %>
-                                    <% if item_app.string %>
-                                        <td><%= item_app.string %></td>
-                                    <% end %>
-                                    <% if item_app.text %>
-                                        <td><%= markdown(item_app.text) %></td>
-                                    <% end %>
-                                    <% if  @group_apps.find(item_app.group_app_id).type_data == "Boolean" %>
-                                        <% if item_app.boolean %>
-                                            <td><input type="checkbox" checked disabled = 1"></td>
-                                        <% else %>
-                                            <td><input type="checkbox" disabled = 1"></td>
-                                        <% end %>
-                                    <% end %>
-                                    <% if item_app.date %>
-                                       <td> <%= item_app.date %></td>
-                                    <% end %>
-                                    <% if item_app.float %>
-                                        <td><%= item_app.float %></td>
+                        <% if @item1 %>
+                            <% @item_apps.where(item_id: item.id).each do |item_app| %>
+                                <% if item_app.string %>
+                                    <td><%= item_app.string %></td>
+                                <% end %>
+                                <% if item_app.text %>
+                                    <td><%= markdown(item_app.text) %></td>
+                                <% end %>
+                                <% if  @group_apps.find(item_app.group_app_id).type_data == "Boolean" %>
+                                    <% if item_app.boolean %>
+                                        <td><input type="checkbox" checked disabled = 1"></td>
+                                    <% else %>
+                                        <td><input type="checkbox" disabled = 1"></td>
                                     <% end %>
                                 <% end %>
+                                <% if item_app.date %>
+                                   <td> <%= item_app.date %></td>
+                                <% end %>
+                                <% if item_app.float %>
+                                    <td><%= item_app.float %></td>
+                                <% end %>
                             <% end %>
-                            <% if user_signed_in? %>
-                                <% if (current_user.id == @group.user_id) || (current_user.admin) %>
-                                    <td onclick="event.stopPropagation ? event.stopPropagation() : (event.cancelBubble=true)">
-                                        <%= link_to image_tag("/assets/edit.png", height: "20px"), edit_group_item_path(@group.id, item) %>
+                        <% end %>
+                        <% if user_signed_in? %>
+                            <% if (current_user.id == @group.user_id) || (current_user.admin) %>
+                                <td onclick="event.stopPropagation ? event.stopPropagation() : (event.cancelBubble=true)">
+                                    <%= link_to image_tag("/assets/edit.png", height: "20px"), edit_group_item_path(@group.id, item) %>
 
-                                    </td>
-                                <% end %>
+                                </td>
                             <% end %>
+                        <% end %>
                       </tr>
                       <% end %>
                     </tbody>
