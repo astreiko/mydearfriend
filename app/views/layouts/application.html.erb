@@ -269,24 +269,14 @@ a:hover {
         </div>
     </nav>
 </div><br/><br/>
-    <%= yield %>
-
-
-</body>
-<hr/>
+<%= yield %>
 <% if user_signed_in? %>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-6 text-mut" style="text-align: left;cursor:pointer">
-            <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.lang == "eng" %>RUS<% else %>ENG<% end %></a>
-        </div>
-        <div class="col-6 text-mut" style="text-align: right;cursor:pointer">
-
-            <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark<% else %>Light<% end %></a>
-        </div>
+    <div class="text-mut" style="cursor:pointer;position: fixed;right: 12px; bottom: 8px;font-weight: normal;">
+        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.lang == "eng" %>RUS<% else %>ENG<% end %></a> |
+        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark<% else %>Light<% end %></a>
     </div>
-</div>
 <% end %>
+</body>
 </html>
 
 
