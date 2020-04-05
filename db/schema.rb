@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_113600) do
+ActiveRecord::Schema.define(version: 2020_04_04_195322) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2020_03_25_113600) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "group_apps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "type_data"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_apps_on_group_id"
+  end
+
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "topic_id", null: false
@@ -63,6 +72,20 @@ ActiveRecord::Schema.define(version: 2020_03_25_113600) do
     t.integer "items_count", default: 0
     t.index ["topic_id"], name: "index_groups_on_topic_id"
     t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "item_apps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "group_app_id", null: false
+    t.string "string"
+    t.text "text"
+    t.boolean "boolean"
+    t.date "date"
+    t.float "float"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_app_id"], name: "index_item_apps_on_group_app_id"
+    t.index ["item_id"], name: "index_item_apps_on_item_id"
   end
 
   create_table "item_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -148,8 +171,11 @@ ActiveRecord::Schema.define(version: 2020_03_25_113600) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
+  add_foreign_key "group_apps", "groups"
   add_foreign_key "groups", "topics"
   add_foreign_key "groups", "users"
+  add_foreign_key "item_apps", "group_apps"
+  add_foreign_key "item_apps", "items"
   add_foreign_key "item_tags", "items"
   add_foreign_key "item_tags", "tags"
   add_foreign_key "items", "groups"

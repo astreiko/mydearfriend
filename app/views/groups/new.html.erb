@@ -32,6 +32,9 @@
                     <% end %>
             <select/>
         </div>
+        <input value="Add field" type="button" class="btn btn-primary" style="background: blue" onclick="add_field()" >
+        <div class="field" id="add_field" >
+        </div>
         <div class="actions">
             <br/>
             <center>
@@ -61,4 +64,11 @@ jQuery(document).ready(function($){
         }
     });
 });
+
+i=0;
+function add_field() {
+    $("#add_field").prepend("<div id="+ i +"></br><input placeholder='Field name' name='titleAdd[]' required style='margin: 5px 0'>&nbsp;&nbsp;<select name='typeAdd[]' required><option option value=\"\">Type</option><option>String</option><option>Text</option><option>Boolean</option><option>Date</option><option>Float</option><select/>&nbsp;&nbsp;<input value=\"Remove\" type=\"button\"  style=\"background: blue\; color: white\" onclick=\"\$('#"+i+"')\.remove()\;\" ><br/></div>");
+i = i + 1;
+}
+
 </script>

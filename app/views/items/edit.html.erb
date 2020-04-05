@@ -1,4 +1,7 @@
-<style>.navbar {display: none;}</style>
+<style>
+.navbar {display: none;}
+input, textarea{border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;}
+</style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
@@ -15,7 +18,7 @@ $(document).on('click', '.tags', function () {
 <%= form_for :item, url: group_item_path(:group_id => @item.group_id), method: :patch do |form| %>
     <p><%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %></p>
     <p><%= form.rich_text_area :text, :required => 'required' %></p>
-    <strong>Tags:</strong>
+    <strong>Tags</strong>
     <p>
        <%= text_field_tag "tags[]", @myTags[0], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
        <%= text_field_tag "tags[]", @myTags[1], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
@@ -23,9 +26,35 @@ $(document).on('click', '.tags', function () {
        <% @allTags %>
     </p>
     <p>
+        <% if @item_apps %>
+            <% @item_apps.each do |item_app| %>
+                <% if item_app.string %>
+                    <b><%= @group_apps.find(item_app.group_app_id).title %> </b><br/>
+                    <%= text_field_tag 'string[]', item_app.string, :required => 'required' %><br/>
+                <% end %>
+                <% if item_app.text %>
+                    <b><%= @group_apps.find(item_app.group_app_id).title %> </b><br/>
+                    <%= text_area_tag 'text[]', item_app.text, :required => 'required' %><br/>
+                <% end %>
+                <% if @group_apps.find(item_app.group_app_id).type_data == 'Boolean' %>
+                    <b><%= @group_apps.find(item_app.group_app_id).title %> </b><br/>
+                    <%= check_box_tag "boolean[]", item_app.group_app_id, item_app.boolean %><br/>
+                <% end %>
+                <% if item_app.date %>
+                    <b><%= @group_apps.find(item_app.group_app_id).title %> </b><br/>
+                    <%= date_field_tag 'date[]', item_app.date, :required => 'required' %><br/>
+                <% end %>
+                <% if item_app.float %>
+                    <b><%= @group_apps.find(item_app.group_app_id).title %> </b><br/>
+                    <%= text_field_tag 'float[]', item_app.float, :required => 'required' %><br/>
+                <% end %>
+            <% end %><br/>
+        <% end %>
+    <p>
         <br/>
         <center>
-            <%= form.submit 'Save', class:"btn btn-primary", style: "background: blue", role:"button" %>
+            <%= form.submit 'Save', class:"btn btn-primary", style: "background: blue", role:"button" %><br/>
+            <%= link_to "Delete", [@group.items.find_by(id: @item.id, group_id: @group.id).group, @group.items.find_by(id: @item.id, group_id: @group.id)], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary", style: "background: red; color: white", role:"button" %>
         </center>
     </p>
 <% end %>

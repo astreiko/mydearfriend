@@ -71,50 +71,83 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
     end
 
     def create
-    @item = Item.new(item_params)
-    @group = Group.find(params[:group_id])
-    @group.items_count = @group.items_count + 1
-    @item.group_id = @group.id
-    if @item.save
-        @group.save
-        @tag = params[:tags]
-        @tag.each do |value|
-            if @new_tag = Tag.find_by(title: value)
-                @itemTag = ItemTag.new()
-                @itemTag.tag_id =  @new_tag.id
-                @itemTag.item_id =  @item.id
-                @itemTag.save
-            else
-                @newTag = Tag.new(title: value)
-                @newTag.save
-                @itemTag = ItemTag.new()
-                @itemTag.tag_id =  @newTag.id
-                @itemTag.item_id =  @item.id
-                @itemTag.save
-
+        @item = Item.new(item_params)
+        @group = Group.find(params[:group_id])
+        @group.items_count = @group.items_count + 1
+        @item.group_id = @group.id
+        if @item.save
+            @group.save
+            if @group_apps = GroupApp.where(group_id: @group.id)
+                if @params = params[:string]
+                    @apps = @group_apps.where(type_data: "String")
+                    @params.each_with_index do |string, index|
+                        ItemApp.create!(item_id: @item.id, string: string, group_app_id: @apps[index].id)
+                    end
+                end
+                if @params = params[:text]
+                    @apps = @group_apps.where(type_data: "Text")
+                    @params.each_with_index do |string, index|
+                        ItemApp.create!(item_id: @item.id, text: string, group_app_id: @apps[index].id)
+                    end
+                end
+                if @apps = @group_apps.where(type_data: "Boolean")
+                    @apps.each_with_index do |app, index|
+                        i=0
+                        if @params = params[:boolean]
+                            @params.each do |param|
+                                if param.to_i == app.id
+                                    ItemApp.create!(item_id: @item.id, boolean: 1, group_app_id: app.id)
+                                    i=1
+                                end
+                            end
+                        end
+                        if i==0
+                            ItemApp.create!(item_id: @item.id, boolean: 0, group_app_id: app.id)
+                        end
+                    end
+                end
+                if @params = params[:date]
+                    @apps = @group_apps.where(type_data: "Date")
+                    @params.each_with_index do |string, index|
+                        ItemApp.create!(item_id: @item.id, date: string, group_app_id: @apps[index].id)
+                    end
+                end
+                if @params = params[:float]
+                    @apps = @group_apps.where(type_data: "Float")
+                    @params.each_with_index do |string, index|
+                        ItemApp.create!(item_id: @item.id, float: string, group_app_id: @apps[index].id)
+                    end
+                end
             end
+            params[:tags].each do |value|
+                if @new_tag = Tag.find_by(title: value)
+                    @itemTag = ItemTag.create!(tag_id:  @new_tag.id, item_id:  @item.id)
+                else
+                    @newTag = Tag.create!(title: value)
+                    @itemTag = ItemTag.create!(tag_id:  @newTag.id, item_id:  @item.id)
+                end
+            end
+            redirect_to showAll_item_path(:group_id => @group.id)
         end
-        redirect_to showAll_item_path(:group_id => @group.id)
-    else
-    flash.now[:alert] =  'Please, fill in all fields.'
-    render :new
-    end
     end
 
     def new
-          @group = Group.find(params[:group_id])
-          @tags = Tag.all.order(title: :asc)
-          @allTags = []
-          i = 0
-          @tags.each do |tag|
-            @allTags[i] = tag.title
-            i = i + 1
-          end
+        @group = Group.find(params[:group_id])
+        @tags = Tag.all.order(title: :asc)
+        @allTags = []
+        i = 0
+        @tags.each do |tag|
+        @allTags[i] = tag.title
+        i = i + 1
+        end
+        if @group_apps = GroupApp.where(group_id: @group.id)
+        end
     end
 
     def showAll
           @group = Group.find(params[:group_id])
           @item = Item.where(group_id: params[:group_id])
+          @item1 = Item.where(group_id: params[:group_id]).first
           @user = User.find(@group.user_id)
     @menu_topics = Topic.all.order(title: :asc)
     @activ_topics = []
@@ -123,6 +156,8 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
     end
     @menu_topics = @menu_topics.where(id: @activ_topics)
     @menu_topics_yes = 1
+    @item_apps = ItemApp.where(item_id: Item.where(group_id: @group.id).ids)
+    @group_apps = GroupApp.where(group_id: @group.id)
     end
 
     def showOne
@@ -135,6 +170,8 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
           end
           @menu_topics = @menu_topics.where(id: @activ_topics)
           @menu_topics_yes = 1
+          @item_apps = ItemApp.where(item_id: @item.id)
+          @group_apps = GroupApp.all
     end
 
     def show
@@ -185,29 +222,76 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
           @allTags[m] = tag.title
           m = m + 1
         end
+        @item_apps = ItemApp.where(item_id: @item.id)
+        @group_apps = GroupApp.all
     end
 
     def update
-    @item = Item.find(params[:id])
-    @group = Group.find(params[:group_id])
-    if @item.update(item_params)
-        @itemTag = ItemTag.all.where(item_id: @item.id)
-        @itemTag.each do |itemTag|
-            itemTag.destroy
-        end
-        @tag = params[:tags]
-        @tag.each do |value|
-            if !value.blank?
-                if @new_tag = Tag.find_by(title: value)
-                    @itemTag = ItemTag.new(tag_id:  @new_tag.id, item_id:  @item.id)
-                    @itemTag.save
-                else
-                    @newTag = Tag.new(title: value)
-                    @newTag.save
-                    @itemTag = ItemTag.new(tag_id: @newTag.id, item_id:  @item.id)
-                    @itemTag.save
+        @item = Item.find(params[:id])
+        @group = Group.find(params[:group_id])
+        if @item.update(item_params)
+
+            if @group_apps = GroupApp.where(group_id: @group.id)
+                if @params = params[:string]
+                    @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "String").ids)
+                    @item_apps.each_with_index do |item_app, index|
+                        item_app.update(string: @params[index])
+                    end
+                end
+                if @params = params[:text]
+                    @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "Text").ids)
+                    @item_apps.each_with_index do |item_app, index|
+                        item_app.update(text: @params[index])
+                    end
+                end
+                if @params = params[:date]
+                    @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "Date").ids)
+                    @item_apps.each_with_index do |item_app, index|
+                        item_app.update(date: @params[index])
+                    end
+                end
+                if @params = params[:float]
+                    @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "Float").ids)
+                    @item_apps.each_with_index do |item_app, index|
+                        item_app.update(float: @params[index])
+                    end
+                end
+                if @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "Boolean").ids)
+                     @item_apps.each_with_index do |item_app, index|
+                        i=0
+                        if @params = params[:boolean]
+                            @params.each do |param|
+                                if param.to_i == item_app.group_app_id
+                                    item_app.update(boolean: 1)
+                                    i=1
+                                end
+                            end
+                        end
+                        if i==0
+                            item_app.update(boolean: 0)
+                        end
+                     end
                 end
             end
+
+            @itemTag = ItemTag.all.where(item_id: @item.id)
+            @itemTag.each do |itemTag|
+                itemTag.destroy
+            end
+            @tag = params[:tags]
+            @tag.each do |value|
+                if !value.blank?
+                    if @new_tag = Tag.find_by(title: value)
+                        @itemTag = ItemTag.new(tag_id:  @new_tag.id, item_id:  @item.id)
+                        @itemTag.save
+                    else
+                        @newTag = Tag.new(title: value)
+                        @newTag.save
+                        @itemTag = ItemTag.new(tag_id: @newTag.id, item_id:  @item.id)
+                        @itemTag.save
+                    end
+                end
+
         end
         redirect_to showAll_item_path(:group_id => @group.id)
     else

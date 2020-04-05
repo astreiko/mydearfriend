@@ -1,4 +1,8 @@
-<style>.navbar {display: none;}</style>
+<style>
+.navbar {display: none;}
+input{
+border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;}
+</style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
@@ -21,16 +25,44 @@ $(document).on('click', '.tags', function () {
     <strong>Text</strong>
     <%= form.rich_text_area :text, :required => 'required' %>
         </p>
-            <strong>Tags:</strong>
+            <strong>Tags</strong>
         <p>
-           <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
-           <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
-           <%= text_field_tag "tags[]", "", class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
+           <%= text_field_tag "tags[]", "", class: 'tags' %>
+           <%= text_field_tag "tags[]", "", class: 'tags' %>
+           <%= text_field_tag "tags[]", "", class: 'tags' %>
         </p>
         <p>
-        <br/>
-        <center>
-            <%= form.submit 'Create', class:"btn btn-primary", style: "background: blue", role:"button" %>
-        </center>
+            <% if @group_apps %>
+                <% @group_apps.each do |group_app| %>
+                    <% if group_app.type_data == 'String' %>
+                        <b><%= group_app.title %></b><br/>
+                        <input name='string[]' required><br/>
+                    <% end %>
+                    <% if group_app.type_data == 'Text' %>
+                        <b><%= group_app.title %></b><br/>
+                        <textarea name='text[]' required></textarea><br/>
+                    <% end %>
+
+                    <% if group_app.type_data == 'Boolean' %>
+                        <b><%= group_app.title %></b><br/>
+                        <%= check_box_tag "boolean[]", group_app.id %>
+                        <br/>
+                    <% end %>
+                    <% if group_app.type_data == 'Date' %>
+                        <b><%= group_app.title %></b><br/>
+                        <input type="date" name='date[]' required><br/>
+                    <% end %>
+                    <% if group_app.type_data == 'Float' %>
+                        <b><%= group_app.title %></b><br/>
+                        <input name='float[]' required><br/>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </p>
+        <p>
+            <br/>
+            <center>
+                <%= form.submit 'Create', class:"btn btn-primary", style: "background: blue", role:"button" %>
+            </center>
         </p>
 <% end %>

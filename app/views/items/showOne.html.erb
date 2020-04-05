@@ -7,21 +7,21 @@ $(document).ready(function repeatRequest() {
     else{
     var body, id;
     $.ajax({
-           type: 'GET',
-           dataType: 'json',
-           url: "show",
-           async: false,
-           data: { id: <%= @item.id %>, max_id: max},
-           success: function(data){
-                $.each(data, function (key, text) {
-                        $.each(text, function (index, value) {
-                             if (index === "id") {if (max < value) max = value;}
-                             if (index === "body") {body = value;}
-                             if (index === "created_at") {
-                                original = value;
-                                created_at = original.slice(0, 10) + " " + original.slice(11, 19)
-                                }
-                             if (index === "name") {$( ".comments").append("<div />", {'id': id}).append( "<table><tr><td><b><div>" + value + "</div></b><span>" + created_at + "</span></td></tr><tr><td>" + body + "</td></tr></table><br/>" );}});});}});
+        type: 'GET',
+        dataType: 'json',
+        url: "show",
+        async: false,
+        data: { id: <%= @item.id %>, max_id: max},
+        success: function(data){
+            $.each(data, function (key, text) {
+                $.each(text, function (index, value) {
+                    if (index === "id") {if (max < value) max = value;}
+                    if (index === "body") {body = value;}
+                    if (index === "created_at") {
+                        original = value;
+                        created_at = original.slice(0, 10) + " " + original.slice(11, 19)
+                    }
+                    if (index === "name") {$( ".comments").append("<div />", {'id': id}).append( "<table><tr><td><b><div>" + value + "</div></b><span>" + created_at + "</span></td></tr><tr><td>" + body + "</td></tr></table><br/>" );}});});}});
     setTimeout(repeatRequest, 5000);};})
 </script>
 <% if user_signed_in? %>
@@ -29,40 +29,69 @@ $(document).ready(function repeatRequest() {
 function likes() {
 var vote = 0;
 $.ajax({
-           type: 'GET',
-           dataType: 'json',
-           url: "likes",
-           data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
-           success: function(data){
-                $.each(data, function (index, value) {
-                      if (index === "id")
-                            vote = 1;});
-                if (vote == 1) document.getElementById('image').setAttribute("src", "/assets/red_heart.png");
-                if (vote == 0) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});}
+    type: 'GET',
+    dataType: 'json',
+    url: "likes",
+    data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
+    success: function(data){
+        $.each(data, function (index, value) {
+              if (index === "id")
+                    vote = 1;});
+        if (vote == 1) document.getElementById('image').setAttribute("src", "/assets/red_heart.png");
+        if (vote == 0) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});}
 
 $(document).ready(function loadingLikes() {
 var vote = 0;
     $.ajax({
-               type: 'GET',
-               dataType: 'json',
-               url: "loadingLikes",
-               data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
-               success: function(data){
-                    $.each(data, function (index, value) {
-                          if (index === "id") {
-                                vote = 1;
-                                document.getElementById('image').setAttribute("src", "/assets/red_heart.png");}});
-                    if (vote != 1) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});})
+        type: 'GET',
+        dataType: 'json',
+        url: "loadingLikes",
+        data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
+        success: function(data){
+            $.each(data, function (index, value) {
+                  if (index === "id") {
+                        vote = 1;
+                        document.getElementById('image').setAttribute("src", "/assets/red_heart.png");}});
+            if (vote != 1) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});})
 </script>
 <% end %>
 <div  class="container-fluid" style="background-color: white;">
     <div class="row">
         <div class="col-12">
-                <center>
-                    <h2 style="color: blue" class="item-showall-text"><%= @item.title %></h2><br/>
-                    <span class="markdown-justify">Автор: <%= link_to User.find(@group.user_id).name, user_root_path(:id => User.find(@group.user_id).id) %></span>
-                </center>
-                <p><%= @item.text %></p>
+            <center>
+                <h2 style="color: blue" class="item-showall-text"><%= @item.title %></h2><br/>
+                <span class="markdown-justify">Автор: <%= link_to User.find(@group.user_id).name, user_root_path(:id => User.find(@group.user_id).id) %></span>
+            </center>
+            <p><%= @item.text %></p>
+            <% if @item_apps %>
+                <% @item_apps.each do |item_app| %>
+                    <% if item_app.string %>
+                        <b><%= @group_apps.find(item_app.group_app_id).title %>: </b>
+                        <%= item_app.string %><br/>
+                    <% end %>
+                    <% if item_app.text %>
+                        <b><%= @group_apps.find(item_app.group_app_id).title %>: </b><br/>
+                        <%= markdown(item_app.text) %>
+                    <% end %>
+                    <% if  @group_apps.find(item_app.group_app_id).type_data == "Boolean" %>
+                        <b><%= @group_apps.find(item_app.group_app_id).title %>: </b>
+                        <% if item_app.boolean %>
+                            <input type="checkbox" checked disabled = 1">
+                        <% else %>
+                            <input type="checkbox" disabled = 1">
+                        <% end %>
+                        <br/>
+                    <% end %>
+                    <% if item_app.date %>
+                        <b><%= @group_apps.find(item_app.group_app_id).title %>: </b>
+                        <%= item_app.date %><br/>
+                    <% end %>
+                    <% if item_app.float %>
+                        <b><%= @group_apps.find(item_app.group_app_id).title %>: </b>
+                        <%= item_app.float %><br/>
+                    <% end %>
+                <% end %><br/>
+            <% end %>
         </div>
     </div>
     <div class="row">
