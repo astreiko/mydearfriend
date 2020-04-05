@@ -3,7 +3,7 @@
         <style>.my_collection {display: none;}</style>
     <% end %>
 <% end %>
-<h2 style="text-align: center" class="item-showall-text bl-color"><%= @user.name %> collection</h2>
+<h2 style="text-align: center" class="item-showall-text bl-color"><%= @user.name %>:</h2>
 <div  class="container-fluid">
     <div class="row mb-2">
         <% @user.groups.each do |group| %>
@@ -24,13 +24,13 @@
                             <%= link_to group.title, showAll_item_path(:group_id => group.id) %>
                         </h3>
                         <div class="mb-1 text-muted">
-                            <%= group.created_at %>
+                            <%= group.created_at.strftime("%Y-%m-%d %R") %>
                             <%= @topics.find_by(id: group.topic_id).title %>
                         </div>
                         <span style="text-align: justify;">
                             <%= link_to markdown(group.description), showAll_item_path(:group_id => group.id) %>
                         </span>
-                        <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
+                        <%= link_to @lang.find(33).string, showAll_item_path(:group_id => group.id), class: "stretched-link" %>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <div class="bd-placeholder-img" style:"top: 0;">

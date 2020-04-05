@@ -13,7 +13,7 @@
                         <%= link_to group.title, showAll_item_path(:group_id => group.id) %>
                     </h3>
                     <div class="mb-1 text-muted">
-                        <%= group.created_at %>
+                        <%= group.created_at.strftime("%Y-%m-%d %R") %>
                     </div>
                     <span style="text-align: justify;">
                         <%= link_to markdown(group.description), showAll_item_path(:group_id => group.id) %>
