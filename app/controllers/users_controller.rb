@@ -37,6 +37,15 @@ before_action :authenticate_user!
     end
   end
 
+  def lang
+    @user = User.find(params[:user_id])
+    if @user.lang=="eng"
+        @user.update(lang: "rus")
+    else
+        @user.update(lang: "eng")
+    end
+  end
+
   def destroy
     if params[:user_id] != nil
         @user = User.find(params[:user_id])

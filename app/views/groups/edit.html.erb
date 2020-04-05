@@ -6,23 +6,23 @@
 <% end %>
 <style>.image{opacity: 0;}</style>
 <br/>
-<h1 style="text-align: center" class="item-showall-text bl-color">Сollection editing</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(14).string %></h1>
 <%= form_for :group, url: user_group_path(:user_id => @group.user_id), method: :patch do |form| %>
     <div class="form-group">
-        <strong>If you want to change the image, upload a new one</strong>
+        <strong><%= @lang.find(18).string %></strong>
         <div id="image-photo" class="field dropzone" style="color:black">
             <%= form.file_field :image, class: "image" %>
         </div>
         <div class="field">
-            <strong>Title</strong>
+            <strong><%= @lang.find(15).string %></strong>
             <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
         </div>
         <div class="field">
-            <strong>Description</strong>
+            <strong><%= @lang.find(16).string %></strong>
             <%= form.text_area :description, :required => 'required', style: "height: 100px;width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
         </div>
         <div class="field">
-            <strong>Topic</strong>
+            <strong><%= @lang.find(17).string %></strong>
             <select name='title'>
             <% @topics.each do |topic| %>
                 <% if topic.title == @mytopic %>
@@ -40,7 +40,7 @@
         <div class="actions">
             <br/>
             <center>
-             <%= form.submit 'Save', class: 'submit', class:"btn btn-primary bl-b-color", role:"button"  %>
+             <%= form.submit @lang.find(11).string, class: 'submit', class:"btn btn-primary bl-b-color", role:"button"  %>
             </center>
         </div>
    </div>

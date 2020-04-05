@@ -14,11 +14,13 @@ $(document).on('click', '.tags', function () {
 });
 </script>
 <br/>
-<h1 style="text-align: center" class="item-showall-text bl-color">Item editing</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(10).string %></h1>
 <%= form_for :item, url: group_item_path(:group_id => @item.group_id), method: :patch do |form| %>
+    <strong><%= @lang.find(15).string %></strong>
     <p><%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %></p>
+    <strong><%= @lang.find(29).string %></strong>
     <p><%= form.rich_text_area :text, :required => 'required' %></p>
-    <strong>Tags</strong>
+    <strong><%= @lang.find(28).string %></strong>
     <p>
        <%= text_field_tag "tags[]", @myTags[0], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
        <%= text_field_tag "tags[]", @myTags[1], class: 'tags', style: "border: 1px solid Silver; border-radius: 3px; margin-bottom: 5px;" %>
@@ -53,8 +55,8 @@ $(document).on('click', '.tags', function () {
     <p>
         <br/>
         <center>
-            <%= form.submit 'Save', class:"btn btn-primary bl-b-color", role:"button" %>&nbsp;&nbsp;&nbsp;
-            <%= link_to "Delete", [@group.items.find_by(id: @item.id, group_id: @group.id).group, @group.items.find_by(id: @item.id, group_id: @group.id)], method: :delete, data: { confirm: 'Are you sure?' }, class: "red-del" %>
+            <%= form.submit @lang.find(11).string, class:"btn btn-primary bl-b-color", role:"button" %>&nbsp;&nbsp;&nbsp;
+            <%= link_to @lang.find(12).string, [@group.items.find_by(id: @item.id, group_id: @group.id).group, @group.items.find_by(id: @item.id, group_id: @group.id)], method: :delete, data: { confirm: 'Are you sure?' }, class: "red-del" %>
         </center>
     </p>
 <% end %>

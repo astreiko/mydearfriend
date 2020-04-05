@@ -6,14 +6,19 @@
                 <div class="nav-scroller py-1 mb-2 hello-text">
                     <p class="welcom">
                         <span style="color: red;">admin: admin@mail.ru password: 123456</span>
-                        <br/>Welcome to mydearfriends.herokuapp.com. Here you can read a lot of interesting things about everything in the world. Perhaps you like to travel or you are not indifferent to cooking. Or maybe you want to keep your personal diary. Put here what you would like to share with people, and the world will hear you.
+                        <br/>
+                        <% if user_signed_in? && current_user.lang == "eng" %>
+                            Welcome to mydearfriends.herokuapp.com. Here you can read a lot of interesting things about everything in the world. Perhaps you like to travel or you are not indifferent to cooking. Or maybe you want to keep your personal diary. Put here what you would like to share with people, and the world will hear you.
+                        <% else %>
+                            Добро пожаловать на наш сайт. Здесь вы можете прочитать  много интересного обо всем на свете. Возможно, вы любите путешествовать или вы не равнодушны к кулинарии. А может быть вы хотите завести ваш личный дневник. Разместите здесь то, чем вы бы хотели поделиться с людьми, и мир вас услышит.
+                        <% end %>
                     </p>
                 </div>
             </center>
         <div/>
     <div/>
     <h2 class="blog-post-title title">
-        <center>New items</center>
+        <center><%= @lang.find(31).string %></center>
     </h2>
     <div id="demo" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
@@ -29,7 +34,7 @@
                     <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                         <div class="carousel-caption background-item">
                             <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
-                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
+                            <p><%= link_to @lang.find(34).string, showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
                         </div>
                     </div>
                 </div>
@@ -40,7 +45,7 @@
                     <div class="bg-img bg-img-height" style="background-image: url(<%= rails_blob_url(Group.find(item.group_id).image) %>);background-repeat: no-repeat; background-size: cover; background-position: center;">
                         <div class="carousel-caption background-item">
                             <h1 class="h1-size" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;"><%= item.title %></h1>
-                            <p><%= link_to "Learn more", showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
+                            <p><%= link_to @lang.find(34).string, showOne_item_path(:id => item.id, :group_id => item.group_id), class:"btn btn-lg btn-primary bt-text-size bl-b-color", role:"button" %></p>
                         </div>
                     </div>
                 </div>
@@ -57,7 +62,7 @@
     </div>
     <br/>
     <h2 class="blog-post-title title">
-        <center>The largest collections</center>
+        <center><%= @lang.find(32).string %></center>
     </h2>
     <div class="row mb-2">
         <% @groups.each do |group| %>
@@ -76,7 +81,7 @@
                         <p class="card-text mb-auto">
                             <%= markdown(group.description) %>
                         </p>
-                        <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
+                        <%= link_to @lang.find(33).string, showAll_item_path(:group_id => group.id), class: "stretched-link" %>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <div class="bd-placeholder-img" style:"top: 0;">

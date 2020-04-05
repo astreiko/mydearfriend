@@ -206,25 +206,25 @@ a:hover {
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active home">
                     <a class="nav-link" href="#">
-                        <%= link_to 'Home', root_path %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(5).string, root_path %>&nbsp;&nbsp;&nbsp;
                     <span class="sr-only">(current)</span></a>
                 </li>
                 <% if user_signed_in? %>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
 
-                        <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(1).string, destroy_user_session_path, :method => :delete %>&nbsp;&nbsp;&nbsp;
                     <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item my_collection">
                     <a class="nav-link" href="#">
-                        <%= link_to 'My collection', user_root_path(:id => current_user.id) %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(6).string, user_root_path(:id => current_user.id) %>&nbsp;&nbsp;&nbsp;
                     </a>
                 </li>
                 <% if current_user.admin? %>
                 <li class="nav-item user_management">
                     <a class="nav-link" href="#">
-                        <%= link_to 'User management', management_path %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(7).string, management_path %>&nbsp;&nbsp;&nbsp;
                     </a>
                 </li>
                 <% end %>
@@ -232,18 +232,18 @@ a:hover {
                 <% else %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <%= link_to 'Log in', new_user_session_path %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(3).string, new_user_session_path %>&nbsp;&nbsp;&nbsp;
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <%= link_to 'Sign up', new_user_registration_path %>&nbsp;&nbsp;&nbsp;
+                        <%= link_to @lang.find(2).string, new_user_registration_path %>&nbsp;&nbsp;&nbsp;
                     </a>
                 </li>
                 <% end %>
                 <li class="nav-item topics">
                     <a class="nav-link" href="#">
-                        <%= link_to 'Topics', topics_show_path %>
+                        <%= link_to @lang.find(4).string, topics_show_path %>
                     </a>
                 </li>
                 <% if @menu_topics_yes %>
@@ -275,9 +275,17 @@ a:hover {
 </body>
 <hr/>
 <% if user_signed_in? %>
-    <p class="text-mut" style="text-align: right;cursor:pointer">
-        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark style<% else %>Light style<% end %></a>
-    </p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 text-mut" style="text-align: left;cursor:pointer">
+            <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.lang == "eng" %>RUS<% else %>ENG<% end %></a>
+        </div>
+        <div class="col-6 text-mut" style="text-align: right;cursor:pointer">
+
+            <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark<% else %>Light<% end %></a>
+        </div>
+    </div>
+</div>
 <% end %>
 </html>
 

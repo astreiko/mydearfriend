@@ -6,7 +6,7 @@
 .image{opacity: 0;}
 </style>
 <br/>
-<h1 style="text-align: center" class="item-showall-text bl-color">Add a collection</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(13).string %></h1>
 <br/>
 <%= form_with(model: [ @user, @user.groups.build ], local: true) do |form| %>
    <div class="form-group">
@@ -32,13 +32,13 @@
                     <% end %>
             <select/>
         </div>
-        <input value="Add field" type="button" class="btn btn-primary bl-b-color" onclick="add_field()" >
+        <input value=" + " type="button" class="btn btn-primary bl-b-color" onclick="add_field()" >
         <div class="field" id="add_field" >
         </div>
         <div class="actions">
             <br/>
             <center>
-                <%= form.submit 'Create', class: 'submit', class:"btn btn-primary bl-b-color", role:"button"  %>
+                <%= form.submit 'OK', class: 'submit', class:"btn btn-primary bl-b-color", role:"button"  %>
             </center>
         </div>
    </div>
@@ -67,7 +67,7 @@ jQuery(document).ready(function($){
 
 i=0;
 function add_field() {
-    $("#add_field").prepend("<div id="+ i +"></br><input placeholder='Field name' name='titleAdd[]' required style='margin: 5px 0'>&nbsp;&nbsp;<select name='typeAdd[]' required><option option value=\"\">Type</option><option>String</option><option>Text</option><option>Boolean</option><option>Date</option><option>Float</option><select/>&nbsp;&nbsp;<input value=\"Remove\" type=\"button\" class=\"bl-b-color\" onclick=\"\$('#"+i+"')\.remove()\;\" ><br/></div>");
+    $("#add_field").prepend("<div id="+ i +"></br><input placeholder='Field name' name='titleAdd[]' required style='margin: 5px 0'>&nbsp;&nbsp;<select name='typeAdd[]' required><option option value=\"\">Type</option><option>String</option><option>Text</option><option>Boolean</option><option>Date</option><option>Float</option><select/>&nbsp;&nbsp;<input value=\" X \" type=\"button\"  onclick=\"\$('#"+i+"')\.remove()\;\" ><br/></div>");
 i = i + 1;
 }
 

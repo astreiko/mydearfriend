@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<h2 style="text-align: center" class="item-showall-text bl-color">Topic: <%= @topic.title %></h2>
+<h2 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(36).string %>: <%= @topic.title %></h2>
 <br/>
 <div class="row mb-2">
     <% @groups.each do |group| %>
@@ -18,7 +18,7 @@
                     <span style="text-align: justify;">
                         <%= link_to markdown(group.description), showAll_item_path(:group_id => group.id) %>
                     </span>
-                    <%= link_to "Continue reading", showAll_item_path(:group_id => group.id), class: "stretched-link" %>
+                    <%= link_to @lang.find(33).string, showAll_item_path(:group_id => group.id), class: "stretched-link" %>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <div class="bd-placeholder-img" style:"top: 0;">

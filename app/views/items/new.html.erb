@@ -16,16 +16,16 @@ $(document).on('click', '.tags', function () {
 </script>
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 <br/>
-<h1 style="text-align: center" class="item-showall-text bl-color">Add a item</h1>
+<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(10).string %></h1>
 <%= form_with(model: [ @group, @group.items.build ], local: true) do |form| %>
     <p>
-        <strong>Title</strong>
+        <strong><%= @lang.find(15).string %></strong>
         <%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %>
     </p>
-    <strong>Text</strong>
+    <strong><%= @lang.find(29).string %></strong>
     <%= form.rich_text_area :text, :required => 'required' %>
         </p>
-            <strong>Tags</strong>
+            <strong><%= @lang.find(28).string %></strong>
         <p>
            <%= text_field_tag "tags[]", "", class: 'tags' %>
            <%= text_field_tag "tags[]", "", class: 'tags' %>
@@ -62,7 +62,7 @@ $(document).on('click', '.tags', function () {
         <p>
             <br/>
             <center>
-                <%= form.submit 'Create', class:"btn btn-primary bl-b-color", role:"button" %>
+                <%= form.submit 'OK', class:"btn btn-primary bl-b-color", role:"button" %>
             </center>
         </p>
 <% end %>

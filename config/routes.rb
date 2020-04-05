@@ -18,16 +18,15 @@ Rails.application.routes.draw do
   get 'items/show'
   get 'items/likes', as: 'likes'
   get 'users/style', as: 'style'
+  get 'users/lang', as: 'lang'
   get 'items/index2', as: 'items_index2'
   get 'items/index3', as: 'items_index3'
   get 'items/loadingLikes', as: 'loadingLikes'
   get 'topics/show', as: 'topics_show'
   post 'users/:id/groups/upload' =>  'groups#upload'
 
-
   resources :tags
   resources :item_tags
-
 
   resources :users do
      resources :groups

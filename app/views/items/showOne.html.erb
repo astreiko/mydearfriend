@@ -60,7 +60,7 @@ var vote = 0;
         <div class="col-12">
             <center>
                 <h2 class="item-showall-text bl-color"><%= @item.title %></h2><br/>
-                <span class="markdown-justify">Автор: <%= link_to User.find(@group.user_id).name, user_root_path(:id => User.find(@group.user_id).id) %></span>
+                <span class="markdown-justify"><%= @lang.find(27).string %>: <%= link_to User.find(@group.user_id).name, user_root_path(:id => User.find(@group.user_id).id) %></span>
             </center>
             <p><%= @item.text %></p>
             <% if @item_apps %>
@@ -101,7 +101,7 @@ var vote = 0;
             <% end %>
         </div>
             <div class="col-6" style="text-align: right;">
-            <%= link_to "Go to this collection", showAll_item_path(:group_id => @item.group_id), class: "stretched-link" %>&nbsp;&nbsp;&nbsp;<br/><br/>
+            <%= link_to @lang.find(39).string, showAll_item_path(:group_id => @item.group_id), class: "stretched-link" %>&nbsp;&nbsp;&nbsp;<br/><br/>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@ var vote = 0;
             <div class="comments"></div>
                 <br/>
                 <% if user_signed_in? %>
-                    <h4><b>Add a comment</b></h4>
+                    <h4><b><%= @lang.find(8).string %></b></h4>
                     <%= form_with(model: [ @item, @item.comments.build ], local: true) do |form| %>
                         <p>
                             <%= form.text_area :body, class: "comment-text-area wt-b-color", style: "height: 100px" %>

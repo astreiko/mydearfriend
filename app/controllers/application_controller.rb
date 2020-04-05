@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 before_action :authenticate_active!
+before_action :lang!
 
   def authenticate_active!
     if user_signed_in?
@@ -8,6 +9,14 @@ before_action :authenticate_active!
             sign_out(current_user)
             user_session_path
         end
+    end
+  end
+
+  def lang!
+    if user_signed_in? && current_user.lang == "rus"
+      @lang = Lang.all
+    else
+      @lang = Eng.all
     end
   end
 
