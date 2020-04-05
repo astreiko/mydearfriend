@@ -18,32 +18,32 @@ before_action :authenticate_user!, except: [:showAll]
     end
 
     def create
-    @user = User.find(params[:user_id])
-    @group
-    if @group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
-        @group.update(create_params)
-        @topic = Topic.find_by(title: params[:title])
-        @group.update(:topic_id => @topic.id)
-    else
-        @group = Group.new(create_params)
-        @topic = Topic.find_by(title: params[:title])
-        @group.topic_id = @topic.id
-        @group.user_id = @user.id
-        @group.image.attach(io: File.open(Rails.root.to_s  + '/app/assets/images/1534181477.jpg'), filename: '1534181477.jpg')
-        @group.save!
-    end
-    if @titleAdd = params[:titleAdd]
-      @group_app = []
-      @typeAdd = params[:typeAdd]
-      @titleAdd.each_with_index do |titleAdd, index|
-        @group_app[index] = GroupApp.new(title: titleAdd, type_data: @typeAdd[index])
-      end
-        @group_app.each do |group_app|
-            group_app.group_id = @group.id
-            group_app.save!
+        @user = User.find(params[:user_id])
+        @group
+        if @group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:user_id]).first
+            @group.update(create_params)
+            @topic = Topic.find_by(title: params[:title])
+            @group.update(:topic_id => @topic.id)
+        else
+            @group = Group.new(create_params)
+            @topic = Topic.find_by(title: params[:title])
+            @group.topic_id = @topic.id
+            @group.user_id = @user.id
+            @group.image.attach(io: File.open(Rails.root.to_s  + '/app/assets/images/1534181477.jpg'), filename: '1534181477.jpg')
+            @group.save!
         end
-    end
-    redirect_to user_root_path(:id => @user.id)
+        if @titleAdd = params[:titleAdd]
+          @group_app = []
+          @typeAdd = params[:typeAdd]
+          @titleAdd.each_with_index do |titleAdd, index|
+            @group_app[index] = GroupApp.new(title: titleAdd, type_data: @typeAdd[index])
+          end
+            @group_app.each do |group_app|
+                group_app.group_id = @group.id
+                group_app.save!
+            end
+        end
+        redirect_to user_root_path(:id => @user.id)
     end
 
     def new

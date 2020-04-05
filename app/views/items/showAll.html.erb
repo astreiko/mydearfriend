@@ -52,7 +52,7 @@ h3 {font-size: 120%; text-align: center;}
                          <th><h3 class="item-showall-text">Updated at&nbsp;</h3></th>
                          <% if @item1 %>
                             <% @item_apps.where(item_id: @item1.id).each do |item_app| %>
-                                <th><h3><%= @group_apps.find(item_app.group_app_id).title %>&nbsp;</h3></th>
+                                <th id="table-none"><h3><%= @group_apps.find(item_app.group_app_id).title %>&nbsp;</h3></th>
                             <% end %>
                          <% end %>
                          <% if user_signed_in? %>
@@ -65,29 +65,29 @@ h3 {font-size: 120%; text-align: center;}
                     <tbody>
                       <% @group.items.each do |item| %>
                         <tr id="tr" style="cursor: pointer" onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';">
-                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.title%></td>
-                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';" class="xxx"><%= item.created_at %></td>
-                        <td onclick="window.location.href='https://mydearfriend.herokuapp.com/items/showOne?group_id=<%= @group.id %>&id=<%= item.id %>';"><%= item.updated_at %></td>
+                        <td ><%= item.title%></td>
+                        <td class="xxx"><%= item.created_at %></td>
+                        <td><%= item.updated_at %></td>
                         <% if @item1 %>
                             <% @item_apps.where(item_id: item.id).each do |item_app| %>
                                 <% if item_app.string %>
-                                    <td><%= item_app.string %></td>
+                                    <td id="table-none"><%= item_app.string %></td>
                                 <% end %>
                                 <% if item_app.text %>
-                                    <td><%= markdown(item_app.text) %></td>
+                                    <td id="table-none"><%= markdown(item_app.text) %></td>
                                 <% end %>
                                 <% if  @group_apps.find(item_app.group_app_id).type_data == "Boolean" %>
                                     <% if item_app.boolean %>
-                                        <td><input type="checkbox" checked disabled = 1"></td>
+                                        <td id="table-none"><input type="checkbox" checked disabled = 1"></td>
                                     <% else %>
-                                        <td><input type="checkbox" disabled = 1"></td>
+                                        <td id="table-none"><input type="checkbox" disabled = 1"></td>
                                     <% end %>
                                 <% end %>
                                 <% if item_app.date %>
-                                   <td> <%= item_app.date %></td>
+                                   <td id="table-none"> <%= item_app.date %></td>
                                 <% end %>
                                 <% if item_app.float %>
-                                    <td><%= item_app.float %></td>
+                                    <td id="table-none"><%= item_app.float %></td>
                                 <% end %>
                             <% end %>
                         <% end %>
