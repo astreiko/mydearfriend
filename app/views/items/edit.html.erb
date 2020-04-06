@@ -14,7 +14,7 @@ $(document).on('click', '.tags', function () {
 });
 </script>
 <br/>
-<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(10).string %></h1>
+<h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(9).string %></h1>
 <%= form_for :item, url: group_item_path(:group_id => @item.group_id), method: :patch do |form| %>
     <strong><%= @lang.find(15).string %></strong>
     <p><%= form.text_area :title, :required => 'required', style: "width: 100%; border: 1px solid Silver; border-radius: 3px;" %></p>

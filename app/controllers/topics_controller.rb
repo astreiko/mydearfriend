@@ -3,12 +3,6 @@ before_action :authenticate_user!, except: [:show]
 
     def show
         @topics = Topic.all.order(title: :asc)
-        @activ_topics = []
-        Group.all.each do |group|
-            @activ_topics.push(group.topic_id)
-        end
-
-        @topics = @topics.where(id: @activ_topics)
         @users = User.all
         @groups = Group.all
             @menu_topics = Topic.all.order(title: :asc)

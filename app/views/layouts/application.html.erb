@@ -114,7 +114,7 @@ table {word-break: break-all;}
     .h1-size{font-size: 26px;}
     .bt-text-size{font-size: 20px;}
     .group-image-none{display: none;}
-    #table-none{display:none;}
+    #table-none, .menu-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
     .item-showall-table {display: none;}}
 @media screen and (min-width: 401px) and (max-width: 575px) {
@@ -127,7 +127,7 @@ table {word-break: break-all;}
     .input-search {margin-top: 10%;}
     .sortable td:nth-child(3){display:none;}
     .sortable th:nth-child(3){display:none;}
-    #table-none{display:none;}
+    #table-none, .menu-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
     .item-showall-table-email{display: none;}}
 @media screen and (max-width: 400px) {
@@ -142,7 +142,7 @@ table {word-break: break-all;}
     .sortable th:nth-child(3){display:none;}
     .sortable td:nth-child(2){display:none;}
     .sortable th:nth-child(2){display:none;}
-    #table-none{display:none;}
+    #table-none, .menu-none{display:none;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
     .item-showall-table-email{display: none;}}
 @media screen and (min-width: 576px) {
@@ -256,22 +256,18 @@ a:hover {
                                 <li class="menu-topic-hover-color">&nbsp;<%= link_to topic.title, items_index3_path(:topic_id => topic.id), style: " font-size: 80%" %></li>
                             <% end %>
                         </ul>
+                </li>
                 <% end %>
-                </li>
-                <li class="nav-item topics">
-                    <a class="nav-link" href="#">
-                    </a>
-                </li>
             </ul>
             <%= form_tag items_path, role: 'search', method: :get do |f| %>
-            <%= text_field_tag :q, "", placeholder: "...", class: "form-control mr-sm-2" %>
+            <br/><%= text_field_tag :q, "", placeholder: "...", class: "form-control mr-sm-2" %>
             <% end %>
         </div>
     </nav>
 </div><br/><br/>
 <%= yield %>
 <% if user_signed_in? %>
-    <div class="text-mut" style="cursor:pointer;position: fixed;right: 12px; bottom: 8px;font-weight: normal;">
+    <div class="text-mut" style="cursor:pointer;left: 90%, bottom: 8px;font-weight: normal;">
         <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.lang == "eng" %>RUS<% else %>ENG<% end %></a> |
         <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark<% else %>Light<% end %></a>
     </div>
