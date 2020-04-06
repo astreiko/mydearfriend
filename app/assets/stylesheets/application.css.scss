@@ -92,8 +92,7 @@ table {word-break: break-all;}
 .height-slide {height: 400px;}
 .index-img{position: relative;}
 .bg-img{
-    width: 100%;
-@include background-image();}
+    width: 100%;}
 .bg-img-height{height: 500px;}
 .scale {transition: 0.4s;}
 .scale:hover {transform: scale(1.02);}
