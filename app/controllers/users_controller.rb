@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  # routes to the login / sign up if not authenticated
-before_action :authenticate_user!
+before_action :authenticate_user!, except: [:lang, :style]
 
 
   def admin
@@ -29,20 +29,36 @@ before_action :authenticate_user!
   end
 
   def style
-    @user = User.find(params[:user_id])
-    if @user.style=="light"
-        @user.update(style: "dark")
+    if params[:user_id] != "0"
+        @user = User.find(params[:user_id])
+        if @user.style=="light"
+            @user.update(style: "dark")
+        else
+            @user.update(style: "light")
+        end
     else
-        @user.update(style: "light")
+        if Session.find_by(session_id: session.id).style == "light"
+            Session.find_by(session_id: session.id).update(style: "dark")
+        else
+            Session.find_by(session_id: session.id).update(style: "light")
+        end
     end
   end
 
   def lang
-    @user = User.find(params[:user_id])
-    if @user.lang=="eng"
-        @user.update(lang: "rus")
+     if params[:user_id] != "0"
+        @user = User.find(params[:user_id])
+        if @user.lang=="eng"
+            @user.update(lang: "rus")
+        else
+            @user.update(lang: "eng")
+        end
     else
-        @user.update(lang: "eng")
+        if Session.find_by(session_id: session.id).lang=="eng"
+            Session.find_by(session_id: session.id).update(lang: "rus")
+        else
+            Session.find_by(session_id: session.id).update(lang: "eng")
+        end
     end
   end
 

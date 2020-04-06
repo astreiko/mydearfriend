@@ -27,5 +27,4 @@ class HomeController < ApplicationController
         @tags = Tag.where(id: @allTags).order(created_at: :desc).limit(40)
     end
 
-
 end

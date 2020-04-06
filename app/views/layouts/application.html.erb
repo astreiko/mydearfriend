@@ -16,6 +16,7 @@
         <%= javascript_pack_tag 'application', 'data-turbolinks-eval': 'false', 'data-turbolinks-suppress-warning': 'true' %>
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <style>
+.lang-style{position: fixed;}
 td p {margin: 10px 0;}
 .comment-text-area{
     border: 1px solid black;
@@ -118,6 +119,7 @@ table {word-break: break-all;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
     .item-showall-table {display: none;}}
 @media screen and (min-width: 401px) and (max-width: 575px) {
+    .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 200px;}
     .button-text {font-size: 70%;}
@@ -131,6 +133,7 @@ table {word-break: break-all;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
     .item-showall-table-email{display: none;}}
 @media screen and (max-width: 400px) {
+    .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 150px;}
     .button-text {font-size: 50%;}
@@ -149,7 +152,7 @@ table {word-break: break-all;}
     .hello-short {display: none;}}
 @media screen and (min-width: 768px) {
     .container-width-50 {width: 50%}}
-<% if current_user && current_user.style == "dark" %>
+<% if @style == "dark" %>
 body, .nav-color {background-color: #4a4846; color: white;}
 .welcom, .color-wh, .text-mut {color: white}
 a:link {
@@ -264,14 +267,14 @@ a:hover {
             <% end %>
         </div>
     </nav>
-</div><br/><br/>
+</div><br/><br/><br/>
 <%= yield %>
-<% if user_signed_in? %>
-    <div class="text-mut" style="cursor:pointer;left: 90%, bottom: 8px;font-weight: normal;">
-        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.lang == "eng" %>RUS<% else %>ENG<% end %></a> |
-        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <%= current_user.id %>}, success: function(data){location.reload()}});"><% if current_user.style == "light" %>Dark<% else %>Light<% end %></a>
+</div><br/><br/><br/>
+    <div class="text-mut lang-style" style="left: 5px; bottom: 5px;cursor:pointer;font-weight: normal;">
+        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @lang2 == "eng" %>RUS<% else %>ENG<% end %></a> |
+        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @style == "light" %>Dark<% else %>Light<% end %></a>
     </div>
-<% end %>
+
 </body>
 </html>
 

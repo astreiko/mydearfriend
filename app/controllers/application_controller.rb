@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 before_action :authenticate_active!
 before_action :lang!
+before_action :style!
 
   def authenticate_active!
     if user_signed_in?
@@ -13,10 +14,47 @@ before_action :lang!
   end
 
   def lang!
-    if user_signed_in? && current_user.lang == "rus"
-      @lang = Lang.all
+    if user_signed_in?
+        if current_user.lang == "rus"
+            @lang = Lang.all
+            @lang2 = "rus"
+        else
+            @lang = Eng.all
+            @lang2 = "eng"
+        end
     else
-      @lang = Eng.all
+        if Session.find_by(session_id: session.id)
+            if Session.find_by(session_id: session.id).lang == "rus"
+                @lang = Lang.all
+                @lang2 = "rus"
+            else
+                @lang = Eng.all
+                @lang2 = "eng"
+            end
+        else
+            @lang = Eng.all
+            @lang2 = "eng"
+        end
+    end
+  end
+
+  def style!
+    if user_signed_in?
+        if current_user.style == "light"
+            @style = "light"
+        else
+            @style = "dark"
+        end
+    else
+        if Session.find_by(session_id: session.id)
+            if Session.find_by(session_id: session.id).style == "light"
+                @style = "light"
+            else
+                @style = "dark"
+            end
+        else
+            @style = "light"
+        end
     end
   end
 
@@ -46,7 +84,5 @@ before_action :lang!
       devise_parameter_sanitizer.permit(:sign_up, keys: [:active])
       devise_parameter_sanitizer.permit(:sign_up, keys: [:admin])
   end
-
-
 
 end

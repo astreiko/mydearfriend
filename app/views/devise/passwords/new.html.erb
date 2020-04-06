@@ -1,20 +1,20 @@
-<style>.navbar {display: none;}</style>
+<style>.navbar, .lang-style {display: none;}</style>
 <div class="container container-width-50">
 </br>
 <center>
     <div><%= link_to image_tag("/assets/home.png", height: "50px"), root_path %></div>
     <br/>
-	<h1 class="h3 mb-3 font-weight-normal">Forgot your password?</center></h1>
+	<h1 class="h3 mb-3 font-weight-normal">?</center></h1>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    Enter your email<br/><br/>
+    <%= @lang.find(20).string %><br/><br/>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 </br>
   <div class="actions">
-    <%= f.submit "Send me reset password instructions", class: "btn btn-lg btn-primary btn-block bl-b-color" %>
+    <%= f.submit "ОК", class: "btn btn-lg btn-primary btn-block bl-b-color" %>
   </div>
 <% end %>
 

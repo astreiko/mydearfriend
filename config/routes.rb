@@ -24,9 +24,13 @@ Rails.application.routes.draw do
   get 'items/loadingLikes', as: 'loadingLikes'
   get 'topics/show', as: 'topics_show'
   post 'users/:id/groups/upload' =>  'groups#upload'
+ devise_scope :user do
 
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
+  end
   resources :tags
   resources :item_tags
+
 
   resources :users do
      resources :groups

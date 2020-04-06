@@ -121,5 +121,4 @@ before_action :authenticate_user!, except: [:showAll]
           params.require(:group).permit(:description, :title, :file)
     end
 
-
 end
