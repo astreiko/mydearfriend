@@ -15,3 +15,140 @@
  *= require_tree .
 
  */
+
+.lang-style{position: fixed;}
+td p {margin: 10px 0;}
+.comment-text-area{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 3px;
+    width: 40%;
+    padding: 1%;
+    text-align: left;}
+.comment-btn-ok{width: 40%;}
+input {
+    border: 1px solid gray;
+    border-radius: 3px;}
+input:hover, textarea:hover {
+    border: 1px solid DodgerBlue;
+    border-radius: 3px;}
+.comments table {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    background-color: Lavender;
+    width: 40%;
+    padding: 1%;
+    text-align: left;}
+.table-hover tbody tr:hover {
+    background: none;
+    box-shadow: inset 0 0 200px 5px LightYellow;
+    border-radius: 10px;}
+select:invalid:not(:focus) {color: gray;}
+select:invalid:focus {color: transparent;}
+select:focus option {color: initial;}
+.hello-my-dear-friends {
+    font-family: Comic Sans MS;
+    font-style: italic;
+    font-weight: bold;}
+.trix-content{text-align: justify;}
+table {word-break: break-all;}
+.sortable .head h3 {cursor:pointer}
+.sortable .head h3:after {content: "\1F859";}
+.sortable .desc h3 {cursor:pointer}
+.sortable .desc h3:after {content: "\1F853";}
+.sortable .asc h3 {cursor:pointer}
+.sortable .asc h3:after {content: "\1F851";}
+.markdown-justify {text-align: justify;}
+.button-img {height: 20px;}
+.button-top {margin-left: 5%;}
+.input-search {
+    height: 42px;
+    width: 0;
+    padding: 0 42px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-right: 5%;
+    outline: none;
+    background: transparent;
+    background-image: url(assets/search.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    right: 1%;
+    position: absolute;
+    margin-top: 2%;
+    opacity: .3;}
+.input-search:hover {
+    background-image: none;
+    width: 100%;
+    border-bottom: 1px solid black;
+    opacity: 1;}
+.button-search {visibility: hidden;}
+.a-border:hover {
+    border: 1px solid;
+    border-radius: 10px;}
+.hello {font-size: 180%;}
+.height-slide {height: 400px;}
+.index-img{position: relative;}
+.bg-img{
+    width: 100%;
+@include background-image();}
+.bg-img-height{height: 500px;}
+.scale {transition: 0.4s;}
+.scale:hover {transform: scale(1.02);}
+.red-del{font-weight: bold}
+.red-del:hover{color: red}
+@media screen and (max-width: 1200px) {
+    .hello-text{font-size: 14px;}
+    .bg-img-height{height: 400px;}}
+@media screen and (max-width: 992px) {
+    .hello, .title {font-size: 150%;}
+    .hello-text{font-size: 12px;}
+    .posit-abs{position: absolute;}
+    .bg-img-height{height: 400px;}}
+@media screen and (max-width: 768px) {
+    .hello, .title {font-size: 20px;}
+    .button-text {font-size: 70%;}
+    .hello-text{font-size: 10px;}
+    .bg-img-height{height: 350px;}
+    .h1-size{font-size: 26px;}
+    .bt-text-size{font-size: 20px;}
+    .group-image-none{display: none;}
+    #table-none, .menu-none{display:none;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
+    .item-showall-table {display: none;}}
+@media screen and (min-width: 401px) and (max-width: 575px) {
+    .lang-style{position: relative;}
+    .hello, .hello-text {display: none;}
+    .input-search:focus {width: 200px;}
+    .button-text {font-size: 70%;}
+    .bg-img-height{height: 300px;}
+    .h1-size{font-size: 24px;}
+    .bt-text-size{font-size: 20px;}
+    .input-search {margin-top: 10%;}
+    .sortable td:nth-child(3){display:none;}
+    .sortable th:nth-child(3){display:none;}
+    #table-none, .menu-none{display:none;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
+    .item-showall-table-email{display: none;}}
+@media screen and (max-width: 400px) {
+    .lang-style{position: relative;}
+    .hello, .hello-text {display: none;}
+    .input-search:focus {width: 150px;}
+    .button-text {font-size: 50%;}
+    .bg-img-height{height: 250px;}
+    .h1-size{font-size: 16px; }
+    .bt-text-size{font-size: 16px;}
+    .input-search {margin-top: 10%;}
+    .sortable td:nth-child(3){display:none;}
+    .sortable th:nth-child(3){display:none;}
+    .sortable td:nth-child(2){display:none;}
+    .sortable th:nth-child(2){display:none;}
+    #table-none, .menu-none{display:none;}
+    .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
+    .item-showall-table-email{display: none;}}
+@media screen and (min-width: 576px) {
+    .hello-short {display: none;}}
+@media screen and (min-width: 768px) {
+    .container-width-50 {width: 50%}}
