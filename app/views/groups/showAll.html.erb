@@ -17,9 +17,6 @@
                 <% end %>
                 <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative scale">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 bl-color">
-                            <%= User.find(group.user_id).name %>
-                        </strong>
                         <h3 class="mb-0">
                             <%= link_to group.title, showAll_item_path(:group_id => group.id) %>
                         </h3>

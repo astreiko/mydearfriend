@@ -18,15 +18,13 @@
   </div>
 
   <div class="field">
-    ******
     <% if @minimum_password_length %>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <%= f.password_field :password, placeholder: "******" , autocomplete: "new-password", class: "form-control" %>
   </div>
 
-  <div class="field">
-    ******<br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  <div class="field"><br />
+    <%= f.password_field :password_confirmation, placeholder: "******", autocomplete: "new-password", class: "form-control" %>
   </div>
 </br>
   <div class="actions">
