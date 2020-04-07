@@ -1,6 +1,15 @@
 class ItemsController < ApplicationController
 before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :index, :index2, :index3]
+before_action :owner_or_admin!, only: [:edit, :new]
 
+    def owner_or_admin!
+        unless current_user.admin
+            unless current_user.id == Group.find(params[:group_id]).user_id
+                redirect_to root_path
+            end
+        end
+    end
+    
     def index
         @q = params[:q]
         @results = []
