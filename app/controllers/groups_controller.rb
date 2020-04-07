@@ -1,6 +1,15 @@
 class GroupsController < ApplicationController
 before_action :authenticate_user!, except: [:showAll]
+before_action :owner_or_admin!, only: [:edit, :new]
 
+    def owner_or_admin!
+        unless current_user.admin
+            unless current_user.id.to_s == params[:user_id]
+                redirect_to root_path
+            end
+        end
+    end
+    
     def upload
         if @previous_group = Group.where(topic_id: 1, description: 'description', title: 'title', user_id: params[:id]).first
             @previous_group.destroy
