@@ -16,14 +16,13 @@ class HomeController < ApplicationController
             end
             groups.description = groups.description.slice(0..150) + "..."
         end
-
         @itemTag = ItemTag.all
         @allTags = []
-              i = 0
-              @itemTag.each do |tag|
+            i = 0
+            @itemTag.each do |tag|
                 @allTags[i] = tag.tag_id
                 i = i + 1
-              end
+            end
         @tags = Tag.where(id: @allTags).order(created_at: :desc).limit(40)
     end
 

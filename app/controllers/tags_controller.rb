@@ -1,18 +1,17 @@
 class TagsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!
+before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
     def create
         @tag = Tag.new(tag_params)
-
         respond_to do |format|
-          if @tag.save
-            format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
-            format.json { render :show, status: :created, location: @tag }
-          else
-            format.html { render :new }
-            format.json { render json: @tag.errors, status: :unprocessable_entity }
-          end
+            if @tag.save
+                format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+                format.json { render :show, status: :created, location: @tag }
+            else
+                format.html { render :new }
+                format.json { render json: @tag.errors, status: :unprocessable_entity }
+            end
         end
     end
 
@@ -20,13 +19,13 @@ class TagsController < ApplicationController
     # PATCH/PUT /tags/1.json
     def update
         respond_to do |format|
-          if @tag.update(tag_params)
-            format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
-            format.json { render :show, status: :ok, location: @tag }
-          else
-            format.html { render :edit }
-            format.json { render json: @tag.errors, status: :unprocessable_entity }
-          end
+            if @tag.update(tag_params)
+                format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+                format.json { render :show, status: :ok, location: @tag }
+            else
+                format.html { render :edit }
+                format.json { render json: @tag.errors, status: :unprocessable_entity }
+            end
         end
     end
 
@@ -35,20 +34,20 @@ class TagsController < ApplicationController
     def destroy
         @tag.destroy
         respond_to do |format|
-          format.html { redirect_to tags_url, notice: 'Tag was successfully destroyed.' }
-          format.json { head :no_content }
+            format.html { redirect_to tags_url, notice: 'Tag was successfully destroyed.' }
+            format.json { head :no_content }
         end
-        end
+    end
 
-        private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_tag
-          @tag = Tag.find(params[:id])
-        end
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_tag
+        @tag = Tag.find(params[:id])
+    end
 
-        # Only allow a list of trusted parameters through.
-        def tag_params
-          params.require(:tag).permit(:title)
+    # Only allow a list of trusted parameters through.
+    def tag_params
+        params.require(:tag).permit(:title)
     end
 
 end

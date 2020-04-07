@@ -17,9 +17,9 @@ before_action :authenticate_user!, except: [:show]
     def create
         @topic = Topic.new(topic_params)
         if @topic.save
-          redirect_to topics_show_path
+            redirect_to topics_show_path
         else
-          render 'new'
+            render 'new'
         end
     end
 
@@ -27,4 +27,5 @@ before_action :authenticate_user!, except: [:show]
     def topic_params
         params.require(:topic).permit(:title)
     end
+
 end

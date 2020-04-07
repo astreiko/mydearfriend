@@ -1,9 +1,6 @@
 <style>.navbar {display: none;}</style>
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-<%= javascript_tag do %>
-    window.userID = <%= raw @userID.to_json %>;
-<% end %>
 <style>.image{opacity: 0;}</style>
 <br/>
 <h1 style="text-align: center" class="item-showall-text bl-color"><%= @lang.find(14).string %></h1>
@@ -45,23 +42,7 @@
         </div>
    </div>
 <% end %>
-
-<script>
-Dropzone.autoDiscover = false;
-$(document).ready(function () {
- $("#image-photo").dropzone({
-      paramName: "group[image]", // The name that will be used to transfer the file
-        url: '/users/' + userID + '/groups/upload',
-        headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-      maxFiles: 1,
-      maxfilesexceeded: function(file) {
-          this.removeAllFiles();
-          this.addFile(file);
-      },
-      init: function() {
-          var submitButton = document.querySelector(".submit")
-          myDropzone = this; // closure
-} });});
-</script>
+<%= content_tag :div, id: "userID", style: "visibility: hidden" do %>
+<%= @group.user_id %>;
+<% end %>
+<%= javascript_include_tag "editgroup" %>

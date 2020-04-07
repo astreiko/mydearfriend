@@ -31,11 +31,9 @@ group :development, :test do
   gem 'mysql2'
   gem 'rails_12factor'
 end
-
 group :production do
   gem 'pg'
 end
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

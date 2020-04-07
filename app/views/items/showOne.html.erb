@@ -1,60 +1,4 @@
-<script>
-window.addEventListener('popstate',function(event){location.reload(true);});
-var max = 0;
-var oldHash = window.location.pathname;
-$(document).ready(function repeatRequest() {
-    if (oldHash != window.location.pathname) return;
-    else{
-    var body, id;
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "show",
-        async: false,
-        data: { id: <%= @item.id %>, max_id: max},
-        success: function(data){
-            $.each(data, function (key, text) {
-                $.each(text, function (index, value) {
-                    if (index === "id") {if (max < value) max = value;}
-                    if (index === "body") {body = value;}
-                    if (index === "created_at") {
-                        original = value;
-                        created_at = original.slice(0, 10) + " " + original.slice(11, 19)
-                    }
-                    if (index === "name") {$( ".comments").append("<div />", {'id': id}).append( "<table><tr><td><b><div>" + value + "</div></b><span>" + created_at + "</span></td></tr><tr><td>" + body + "</td></tr></table><br/>" );}});});}});
-    setTimeout(repeatRequest, 5000);};})
-</script>
-<% if user_signed_in? %>
-<script>
-function likes() {
-var vote = 0;
-$.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: "likes",
-    data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
-    success: function(data){
-        $.each(data, function (index, value) {
-              if (index === "id")
-                    vote = 1;});
-        if (vote == 1) document.getElementById('image').setAttribute("src", "/assets/red_heart.png");
-        if (vote == 0) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});}
-
-$(document).ready(function loadingLikes() {
-var vote = 0;
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "loadingLikes",
-        data: {user_id: <%= current_user.id %>, item_id: <%= @item.id %>},
-        success: function(data){
-            $.each(data, function (index, value) {
-                  if (index === "id") {
-                        vote = 1;
-                        document.getElementById('image').setAttribute("src", "/assets/red_heart.png");}});
-            if (vote != 1) document.getElementById('image').setAttribute("src", "/assets/white_heart.png");}});})
-</script>
-<% end %>
+<style>.lang-style {display: none;}</style>
 <div  class="container-fluid wt-b-color" >
     <div class="row">
         <div class="col-12">
@@ -126,3 +70,9 @@ var vote = 0;
         </center>
     </div>
 </div>
+<%= content_tag :div, id: "itemid", style: "visibility: hidden" do %><%= @item.id %><% end %>
+<%= javascript_include_tag "showone1" %>
+<% if user_signed_in? %>
+<%= content_tag :div, id: "currentuserid", style: "visibility: hidden" do %><%= current_user.id %><% end %>
+<%= javascript_include_tag "showone2" %>
+<% end %>

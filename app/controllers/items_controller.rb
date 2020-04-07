@@ -34,11 +34,11 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
         @tag = Tag.find(params[:tag_id])
         @itemTag = ItemTag.where(tag_id: @tag.id)
         @allItems = []
-                  i = 0
-                  @itemTag.each do |tag|
-                    @allItems[i] = tag.item_id
-                    i = i + 1
-                  end
+            i = 0
+            @itemTag.each do |tag|
+                @allItems[i] = tag.item_id
+                i = i + 1
+            end
         @items = Item.where(id: @allItems)
         @menu_topics = Topic.all.order(title: :asc)
         @activ_topics = []
@@ -50,17 +50,17 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
     end
 
     def index3
-    @topic = Topic.find(params[:topic_id])
-    @groups = Group.where(topic_id: @topic.id)
-    @topics = Topic.all
-    m = 0
-    @groups.each do |tag|
-      if @groups[m].title.length > 40
-          @groups[m].title = @groups[m].title.slice(0..40) + "..."
-      end
-      @groups[m].description = @groups[m].description.slice(0..150) + "..."
-      m = m + 1
-    end
+        @topic = Topic.find(params[:topic_id])
+        @groups = Group.where(topic_id: @topic.id)
+        @topics = Topic.all
+        m = 0
+        @groups.each do |tag|
+            if @groups[m].title.length > 40
+                @groups[m].title = @groups[m].title.slice(0..40) + "..."
+            end
+            @groups[m].description = @groups[m].description.slice(0..150) + "..."
+            m = m + 1
+        end
         @menu_topics = Topic.all.order(title: :asc)
         @activ_topics = []
         Group.all.each do |group|
@@ -139,59 +139,59 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
         @allTags = []
         i = 0
         @tags.each do |tag|
-        @allTags[i] = tag.title
-        i = i + 1
+            @allTags[i] = tag.title
+            i = i + 1
         end
         if @group_apps = GroupApp.where(group_id: @group.id)
         end
     end
 
     def showAll
-          @group = Group.find(params[:group_id])
-          @item = Item.where(group_id: params[:group_id])
-          @item1 = Item.where(group_id: params[:group_id]).first
-          @user = User.find(@group.user_id)
-    @menu_topics = Topic.all.order(title: :asc)
-    @activ_topics = []
-    Group.all.each do |group|
-        @activ_topics.push(group.topic_id)
-    end
-    @menu_topics = @menu_topics.where(id: @activ_topics)
-    @menu_topics_yes = 1
-    @item_apps = ItemApp.where(item_id: Item.where(group_id: @group.id).ids)
-    @group_apps = GroupApp.where(group_id: @group.id)
+        @group = Group.find(params[:group_id])
+        @item = Item.where(group_id: params[:group_id])
+        @item1 = Item.where(group_id: params[:group_id]).first
+        @user = User.find(@group.user_id)
+        @menu_topics = Topic.all.order(title: :asc)
+        @activ_topics = []
+        Group.all.each do |group|
+            @activ_topics.push(group.topic_id)
+        end
+        @menu_topics = @menu_topics.where(id: @activ_topics)
+        @menu_topics_yes = 1
+        @item_apps = ItemApp.where(item_id: Item.where(group_id: @group.id).ids)
+        @group_apps = GroupApp.where(group_id: @group.id)
     end
 
     def showOne
-          @item = Item.find(params[:id])
-          @group = Group.find(params[:group_id])
-          @menu_topics = Topic.all.order(title: :asc)
-          @activ_topics = []
-          Group.all.each do |group|
-              @activ_topics.push(group.topic_id)
-          end
-          @menu_topics = @menu_topics.where(id: @activ_topics)
-          @menu_topics_yes = 1
-          @item_apps = ItemApp.where(item_id: @item.id)
-          @group_apps = GroupApp.all
+        @item = Item.find(params[:id])
+        @group = Group.find(params[:group_id])
+        @menu_topics = Topic.all.order(title: :asc)
+        @activ_topics = []
+        Group.all.each do |group|
+            @activ_topics.push(group.topic_id)
+        end
+        @menu_topics = @menu_topics.where(id: @activ_topics)
+        @menu_topics_yes = 1
+        @item_apps = ItemApp.where(item_id: @item.id)
+        @group_apps = GroupApp.all
     end
 
     def show
-            @comment = Comment.where(item_id: params[:id]).where("comments.id > ?", params[:max_id]) .order(created_at: :asc).joins(:user).select('comments.id, comments.item_id, users.name as name, comments.body as body, comments.created_at as created_at')
-            render json: @comment
+        @comment = Comment.where(item_id: params[:id]).where("comments.id > ?", params[:max_id]) .order(created_at: :asc).joins(:user).select('comments.id, comments.item_id, users.name as name, comments.body as body, comments.created_at as created_at')
+        render json: @comment
     end
 
     def likes
         @user = User.find(params[:user_id])
         @item = Item.find(params[:item_id])
         if (Like.find_by(user_id: @user.id, item_id: @item.id))
-             @like = Like.find_by(user_id: @user.id, item_id: @item.id)
-             @like.destroy
-             render json: {"vote"=>"nothing"}
+            @like = Like.find_by(user_id: @user.id, item_id: @item.id)
+            @like.destroy
+            render json: {"vote"=>"nothing"}
         else
-             @like = Like.new(user_id: @user.id, item_id: @item.id)
-             @like.save
-             render json: @like
+            @like = Like.new(user_id: @user.id, item_id: @item.id)
+            @like.save
+            render json: @like
         end
     end
 
@@ -199,10 +199,10 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
         @user = User.find(params[:user_id])
         @item = Item.find(params[:item_id])
         if (Like.find_by(user_id: @user.id, item_id: @item.id))
-             @like = Like.find_by(user_id: @user.id, item_id: @item.id)
-             render json: @like
+            @like = Like.find_by(user_id: @user.id, item_id: @item.id)
+            render json: @like
         else
-             render json: {"vote"=>"nothing"}
+            render json: {"vote"=>"nothing"}
         end
     end
 
@@ -214,15 +214,15 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
         @myTags = []
         i = 0
         @itemTag.each do |itemTag|
-          @myTag = Tag.find(itemTag.tag_id)
-          @myTags[i] = @myTag.title
-          i = i + 1
+            @myTag = Tag.find(itemTag.tag_id)
+            @myTags[i] = @myTag.title
+            i = i + 1
         end
         @allTags = []
         m = 0
         @tags.each do |tag|
-          @allTags[m] = tag.title
-          m = m + 1
+            @allTags[m] = tag.title
+            m = m + 1
         end
         @item_apps = ItemApp.where(item_id: @item.id)
         @group_apps = GroupApp.all
@@ -232,7 +232,6 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
         @item = Item.find(params[:id])
         @group = Group.find(params[:group_id])
         if @item.update(item_params)
-
             if @group_apps = GroupApp.where(group_id: @group.id)
                 if @params = params[:string]
                     @item_apps = ItemApp.where(item_id: @item.id, group_app_id: @group_apps.where(type_data: "String").ids)
@@ -275,7 +274,6 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
                      end
                 end
             end
-
             @itemTag = ItemTag.all.where(item_id: @item.id)
             @itemTag.each do |itemTag|
                 itemTag.destroy
@@ -293,27 +291,26 @@ before_action :authenticate_user!, except: [:index, :showAll, :showOne, :show, :
                         @itemTag.save
                     end
                 end
-
+            end
+            redirect_to showAll_item_path(:group_id => @group.id)
+        else
+            flash.now[:alert] =  'Sorry, an unexpected error.'
+            render :edit
         end
-        redirect_to showAll_item_path(:group_id => @group.id)
-    else
-        flash.now[:alert] =  'Sorry, an unexpected error.'
-        render :edit
-    end
     end
 
     def destroy
-      @item = Item.find(params[:id])
-      @group = Group.find(params[:group_id])
-      @group.items_count = @group.items_count - 1
-      @group.save
-      @item.destroy
-      redirect_to showAll_item_path(:group_id => @group.id)
+        @item = Item.find(params[:id])
+        @group = Group.find(params[:group_id])
+        @group.items_count = @group.items_count - 1
+        @group.save
+        @item.destroy
+        redirect_to showAll_item_path(:group_id => @group.id)
     end
 
     private
     def item_params
-      params.require(:item).permit(:title, :text)
+        params.require(:item).permit(:title, :text)
     end
 
 end

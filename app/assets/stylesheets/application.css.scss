@@ -13,9 +13,9 @@
  *= require_self
  *= require_trix
  *= require_tree .
-
  */
 
+.lang-style2 {visibility: hidden;}
 .lang-style{position: fixed;}
 td p {margin: 10px 0;}
 .comment-text-area{
@@ -37,7 +37,6 @@ input:hover, textarea:hover {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 10px;
-    background-color: Lavender;
     width: 40%;
     padding: 1%;
     text-align: left;}
@@ -54,6 +53,7 @@ select:focus option {color: initial;}
     font-weight: bold;}
 .trix-content{text-align: justify;}
 table {word-break: break-all;}
+table td {height: 30px; vertical-align: bottom;}
 .sortable .head h3 {cursor:pointer}
 .sortable .head h3:after {content: "\1F859";}
 .sortable .desc h3 {cursor:pointer}
@@ -63,28 +63,6 @@ table {word-break: break-all;}
 .markdown-justify {text-align: justify;}
 .button-img {height: 20px;}
 .button-top {margin-left: 5%;}
-.input-search {
-    height: 42px;
-    width: 0;
-    padding: 0 42px 0 15px;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-right: 5%;
-    outline: none;
-    background: transparent;
-    background-image: url(assets/search.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    right: 1%;
-    position: absolute;
-    margin-top: 2%;
-    opacity: .3;}
-.input-search:hover {
-    background-image: none;
-    width: 100%;
-    border-bottom: 1px solid black;
-    opacity: 1;}
-.button-search {visibility: hidden;}
 .a-border:hover {
     border: 1px solid;
     border-radius: 10px;}
@@ -107,6 +85,8 @@ table {word-break: break-all;}
     .posit-abs{position: absolute;}
     .bg-img-height{height: 400px;}}
 @media screen and (max-width: 768px) {
+    .lang-style {display: none;}
+    .lang-style2 {visibility: visible;}
     .hello, .title {font-size: 20px;}
     .button-text {font-size: 70%;}
     .hello-text{font-size: 10px;}
@@ -118,6 +98,8 @@ table {word-break: break-all;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
     .item-showall-table {display: none;}}
 @media screen and (min-width: 401px) and (max-width: 575px) {
+    .lang-style {display: none;}
+    .lang-style2 {visibility: visible;}
     .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 200px;}
@@ -132,6 +114,8 @@ table {word-break: break-all;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
     .item-showall-table-email{display: none;}}
 @media screen and (max-width: 400px) {
+    .lang-style {display: none;}
+    .lang-style2 {visibility: visible;}
     .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 150px;}

@@ -33,9 +33,9 @@ class OmniauthController < ApplicationController
         end
     end
 
-  def failure
-    flash.notice = 'There was a problem signing you in. Please register or try signing in later.'
-    redirect_to root_path
-  end
+    def failure
+        flash.notice = 'There was a problem signing you in. Please register or try signing in later.'
+        redirect_to root_path
+    end
 
 end

@@ -5,8 +5,8 @@ before_action :authenticate_admin!
     def authenticate_admin!
         # check if current user is admin
         unless current_user.admin
-          # if current_user is not admin redirect to some route
-          redirect_to root_path
+            # if current_user is not admin redirect to some route
+            redirect_to root_path
         end
         # if current_user is admin he will proceed to edit action
     end

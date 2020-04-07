@@ -106,4 +106,8 @@
         <div/>
     <div/>
 </div>
+<div class="text-mut lang-style2" style="left: 5px; bottom: 5px;cursor:pointer;font-weight: normal;text-align:center">
+<br/><br/><br/>
+    <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @lang2 == "eng" %>RUS<% else %>ENG<% end %></a> |
+    <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @style == "light" %>Dark<% else %>Light<% end %></a>
 </div>

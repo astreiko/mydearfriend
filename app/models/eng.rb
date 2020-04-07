@@ -1,2 +1,3 @@
 class Eng < ApplicationRecord
+
 end

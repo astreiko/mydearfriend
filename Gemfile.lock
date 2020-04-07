@@ -117,13 +117,13 @@ GEM
     dropbox_api (0.1.18)
       faraday (<= 1.0)
       oauth2 (~> 1.1)
-    elasticsearch (7.4.0)
-      elasticsearch-api (= 7.4.0)
-      elasticsearch-transport (= 7.4.0)
-    elasticsearch-api (7.4.0)
+    elasticsearch (7.6.0)
+      elasticsearch-api (= 7.6.0)
+      elasticsearch-transport (= 7.6.0)
+    elasticsearch-api (7.6.0)
       multi_json
-    elasticsearch-transport (7.4.0)
-      faraday
+    elasticsearch-transport (7.6.0)
+      faraday (~> 1)
       multi_json
     erubi (1.9.0)
     execjs (2.7.0)

@@ -25,7 +25,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr><td></td></tr>
                             <% @users.each do |user| %><% if user.id!=1 %>
                                 <% if user.groups.size > 0 %>
                                 <tr style="cursor: pointer;" class="bl-color" onclick="window.location.href='https://mydearfriend.herokuapp.com/groups/showAll?id=<%= user.id %>';" >
@@ -60,7 +59,7 @@
                         </tbody>
                     </table>
                     <br/>
-                    <%= submit_tag @lang.find(12).string, data: { confirm: 'Are you sure?' }, class:"btn btn-primary bt-text-size bl-b-color", role:"button"  %>
+                    <%= submit_tag @lang.find(12).string, data: { confirm: 'Are you sure?' }, class:"btn btn-primary bt-text-size bl-b-color", style: "border:none;border-radius: 10px;", role:"button"  %>
                 </main>
             </center>
             <% end %>
