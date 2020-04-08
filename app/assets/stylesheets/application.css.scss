@@ -15,8 +15,6 @@
  *= require_tree .
  */
 
-.lang-style2 {visibility: hidden;}
-.lang-style{position: fixed;}
 td p {margin: 10px 0;}
 .comment-text-area{
     border: 1px solid black;
@@ -85,8 +83,6 @@ table td {height: 30px; vertical-align: bottom;}
     .posit-abs{position: absolute;}
     .bg-img-height{height: 400px;}}
 @media screen and (max-width: 768px) {
-    .lang-style {display: none;}
-    .lang-style2 {visibility: visible;}
     .hello, .title {font-size: 20px;}
     .button-text {font-size: 70%;}
     .hello-text{font-size: 10px;}
@@ -98,9 +94,6 @@ table td {height: 30px; vertical-align: bottom;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 50%;}
     .item-showall-table {display: none;}}
 @media screen and (min-width: 401px) and (max-width: 575px) {
-    .lang-style {display: none;}
-    .lang-style2 {visibility: visible;}
-    .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 200px;}
     .button-text {font-size: 70%;}
@@ -114,9 +107,6 @@ table td {height: 30px; vertical-align: bottom;}
     .comments table, .comment-text-area, .comment-btn-ok{width: 100%;}
     .item-showall-table-email{display: none;}}
 @media screen and (max-width: 400px) {
-    .lang-style {display: none;}
-    .lang-style2 {visibility: visible;}
-    .lang-style{position: relative;}
     .hello, .hello-text {display: none;}
     .input-search:focus {width: 150px;}
     .button-text {font-size: 50%;}
