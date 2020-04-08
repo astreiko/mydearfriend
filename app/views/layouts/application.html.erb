@@ -94,11 +94,7 @@
     </nav>
 </div><br/><br/><br/>
 <%= yield %>
-</div><br/><br/><br/>
-    <div class="text-mut lang-style" style="left: 5px; bottom: 5px;cursor:pointer;font-weight: normal;">
-        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/lang', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @lang2 == "eng" %>RUS<% else %>ENG<% end %></a> |
-        <a onclick="$.ajax({type: 'GET', dataType: 'json', url: '/users/style', data: {user_id: <% if current_user %> <%= current_user.id %> <% else %> 0 <% end %>}, success: function(data){location.reload()}});"><% if @style == "light" %>Dark<% else %>Light<% end %></a>
-    </div>
+<br/><br/><br/>
 </body>
 </html>
 
